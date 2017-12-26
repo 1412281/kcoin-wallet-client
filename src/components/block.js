@@ -193,7 +193,7 @@ export default class Block extends Component {
             </tr>
             <tr>
                 <td>Timestamp</td>
-                <td>{block.timestamp}</td>
+                <td>{new Date(block.timestamp*1000).toISOString()}</td>
             </tr>
             <tr>
                 <td>Difficulty</td>
@@ -224,20 +224,19 @@ export default class Block extends Component {
                 let st = scriptToLinkAddress(output.lockScript);
                 return (
                     <div>
-                        {st}:{output.value}
+                        #{index}: <b>{output.value}</b> to {st}
                     </div>
                 )
             });
 
             return (
-                <tbody>
+
                 <tr>
                     <td>{convertTransactionToLink(transaction.hash)}</td>
                     <td>{listInput}</td>
                     <td>{listOutput}</td>
 
                 </tr>
-                </tbody>
             )
         });
 
@@ -280,7 +279,9 @@ export default class Block extends Component {
                                 <th>Outputs</th>
                             </tr>
                             </thead>
+                            <tbody>
                             {listTransactions}
+                            </tbody>
                         </Table>
 
                     </Col>

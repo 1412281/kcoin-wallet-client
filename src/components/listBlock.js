@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
+import {Link} from "react-router-dom";
 
 export default class ListBlock extends Component {
     render() {
@@ -21,9 +22,9 @@ export default class ListBlock extends Component {
 
             return (<tr>
                 <td>{index}</td>
-                <td>{block.hash}</td>
+                <td>{convertBlockToLink(block.hash)}</td>
                 <td>{block.transactionsHash}</td>
-                <td>{block.timestamp}</td>
+                <td>{new Date(block.timestamp*1000).toISOString()}</td>
                 <td>{block.difficulty}</td>
                 <td>{block.nonce}</td>
                 <td>{value}</td>
@@ -51,4 +52,17 @@ export default class ListBlock extends Component {
         );
     };
 
+}
+
+function convertBlockToLink(st) {
+    const toSt = '/block/' + st;
+    return (
+        <Link to={toSt}>{st}</Link>
+    );
+}
+function convertTransactionToLink(st) {
+    const toSt = '/address/' + st;
+    return (
+        <Link to={toSt}>{st.slice(0,20)}...</Link>
+    );
 }
