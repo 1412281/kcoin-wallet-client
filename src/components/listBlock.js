@@ -6,14 +6,24 @@ export default class Block extends Component {
         const data = this.props.data;
         // console.log(data);
         const listBlock = data.map((block, index) => {
+            const transactions = block.transactions;
+            let value = 0;
+            transactions.forEach(transaction => {
+                const outputs = transaction.outputs;
+                // console.log(transaction);
+                outputs.forEach(output => {
+                    value += output.value;
+                });
+            });
+
             return (<tr>
                 <td>{index}</td>
                 <td>{block.hash}</td>
-                <td>{block.transactions}</td>
+                {/*<td>{block.transactions}</td>*/}
                 <td>{block.timestamp}</td>
                 <td>{block.difficulty}</td>
                 <td>{block.nonce}</td>
-                <td>{block.outputs}</td>
+                <td>{value}</td>
             </tr>);
         });
         return (
@@ -22,7 +32,7 @@ export default class Block extends Component {
                 <tr>
                     <th>Height</th>
                     <th>Block Hash</th>
-                    <th>Transactions</th>
+                    {/*<th>Transactions</th>*/}
                     <th>Age</th>
                     <th>Difficulty</th>
                     <th>Nonce</th>
