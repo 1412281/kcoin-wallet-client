@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
 
-export default class Block extends Component {
+export default class ListBlock extends Component {
     render() {
         const data = this.props.data;
         // console.log(data);
         const listBlock = data.map((block, index) => {
+            //calc value of block
             const transactions = block.transactions;
             let value = 0;
             transactions.forEach(transaction => {
@@ -15,11 +16,13 @@ export default class Block extends Component {
                     value += output.value;
                 });
             });
+            //link transactions
+
 
             return (<tr>
                 <td>{index}</td>
                 <td>{block.hash}</td>
-                {/*<td>{block.transactions}</td>*/}
+                <td>{block.transactionsHash}</td>
                 <td>{block.timestamp}</td>
                 <td>{block.difficulty}</td>
                 <td>{block.nonce}</td>
@@ -27,12 +30,12 @@ export default class Block extends Component {
             </tr>);
         });
         return (
-            <Table responsive>
+            <Table responsive striped hover >
                 <thead>
                 <tr>
                     <th>Height</th>
                     <th>Block Hash</th>
-                    {/*<th>Transactions</th>*/}
+                    <th>Transactions</th>
                     <th>Age</th>
                     <th>Difficulty</th>
                     <th>Nonce</th>

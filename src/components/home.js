@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Button} from 'react-bootstrap';
-import Block from "./listBlock";
+import {Col, Grid, Row, Button} from 'react-bootstrap';
+import ListBlock from "./listBlock";
 
 export default class Home extends Component {
 
@@ -30,11 +30,14 @@ export default class Home extends Component {
         const isEmpty = blocks.length === 0;
         console.log(fetching);
         return(
+            <Grid>
+                <Row className="show-grid">
+                    <Col md={12} >
             <div>
                 <h1>Lastest blocks</h1>
                 <div>
                     {isEmpty ? (!fetching ? <h2>Empty...</h2> : <h2>Loading...</h2>) :
-                        <Block data={blocks}/>
+                        <ListBlock data={blocks}/>
                     }
                 </div>
 
@@ -42,7 +45,9 @@ export default class Home extends Component {
                 <Button onClick={() => this.handleButtonNext()}>Next</Button>
 
             </div>
-
+                    </Col>
+                </Row>
+            </Grid>
 
         );
     };
