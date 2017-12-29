@@ -18,13 +18,19 @@ export default class ListBlock extends Component {
                 });
             });
             //link transactions
-
+            const today = new Date();
+            const blockTime = new Date(block.timestamp*1000);
+            const diffMs = (today - blockTime); // milliseconds between now & Christmas
+            const stDays = Math.floor(diffMs / 86400000); // days
+            const stHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+            const stMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+            const timeString = stDays > 0 ? stDays + " day(s)" : stHrs > 0 ? stHrs + " hour(s)" : stMins + " min(s)";
 
             return (<tr>
                 <td>{index}</td>
                 <td>{convertBlockToLink(block.hash)}</td>
-                <td>{block.transactionsHash}</td>
-                <td>{new Date(block.timestamp*1000).toISOString()}</td>
+                <td>{block.transactions.length}</td>
+                <td>{timeString}</td>
                 <td>{block.difficulty}</td>
                 <td>{block.nonce}</td>
                 <td>{value}</td>

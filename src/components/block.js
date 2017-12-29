@@ -181,6 +181,8 @@ export default class Block extends Component {
             });
         });
 
+
+
         const summary = (
             <tbody>
             <tr>
@@ -193,7 +195,7 @@ export default class Block extends Component {
             </tr>
             <tr>
                 <td>Timestamp</td>
-                <td>{new Date(block.timestamp*1000).toISOString()}</td>
+                <td>{new Date(block.timestamp*1000).toUTCString()}</td>
             </tr>
             <tr>
                 <td>Difficulty</td>
