@@ -181,8 +181,6 @@ export default class Block extends Component {
             });
         });
 
-
-
         const summary = (
             <tbody>
             <tr>
@@ -195,7 +193,7 @@ export default class Block extends Component {
             </tr>
             <tr>
                 <td>Timestamp</td>
-                <td>{new Date(block.timestamp*1000).toUTCString()}</td>
+                <td>{new Date(block.timestamp*1000).toISOString()}</td>
             </tr>
             <tr>
                 <td>Difficulty</td>
@@ -311,7 +309,7 @@ function convertBlockToLink(st) {
 }
 
 function convertTransactionToLink(st) {
-    const toSt = '/address/' + st;
+    const toSt = '/transaction/' + st;
     return (
         <Link to={toSt}>{st.slice(0,20)}...</Link>
     );

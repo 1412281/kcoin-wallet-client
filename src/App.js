@@ -13,9 +13,10 @@ import LoginContainer from './containers/loginContainer';
 import DashboardContainer from './containers/dashboardContainer';
 
 import axios from 'axios';
+import Block from "./components/block";
+import Transaction from "./components/transaction";
+
 axios.defaults.baseURL = 'http://localhost:8000';
-
-
 class App extends Component {
 
     componentWillMount() {
@@ -34,7 +35,8 @@ class App extends Component {
                     <Route path="/login" render={() => <LoginContainer/>}/>
                     <Route path="/dashboard" render={() => <DashboardContainer/>}/>
                     <Route path="/createTransaction" render={() => <CreateTransactionContainer/>}/>
-
+                    <Route path="/block" render={() => <Block/>}/>
+                    <Route path="/transaction" render={() => <Transaction/>}/>
                 </Switch>
 
             </div>
