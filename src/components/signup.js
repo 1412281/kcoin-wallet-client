@@ -15,7 +15,7 @@ class SignUp extends Component {
             validPwd: null,
             validRePwd: null,
             validForm: 1,
-            emailAvailable: 0
+            emailUnavailable: 0
         }
     }
 
@@ -33,10 +33,10 @@ class SignUp extends Component {
                 console.log(response)
                 if (response.status == 201) {
 
-                    self.setState({emailAvailable: 0})
+                    self.setState({emailUnavailable: 1})
                 }
                 else {
-                    self.setState({emailAvailable: 1})
+                    self.setState({emailUnavailable: 0})
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -103,7 +103,7 @@ class SignUp extends Component {
                                      onBlur={this.handleInputEmail.bind(this)}
                         /><FormControl.Feedback/>
                         {
-                            ( !this.state.emailAvailable) ?
+                            ( this.state.validEmail === 'success' && this.state.emailUnavailable) ?
                                 <div class="alert alert-warning" role="alert">
                                     {this.state.email} already exist!
                                 </div>
