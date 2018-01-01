@@ -16,7 +16,7 @@ import axios from 'axios';
 import Block from "./components/block";
 import Transaction from "./components/transaction";
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'http://localhost:4000';
 class App extends Component {
 
     componentWillMount() {

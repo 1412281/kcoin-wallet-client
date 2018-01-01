@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import '../App.css';
 import {Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 class SignUp extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -15,6 +15,7 @@ class SignUp extends Component {
             validPwd: null,
             validRePwd: null,
             validForm: 1,
+            emailAvailable: 0
         }
     }
 
@@ -22,11 +23,29 @@ class SignUp extends Component {
         let value = e.target.value;
         let emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
         if (emailValid) {
+            var self = this;
+            axios.get('/wallet/existsemail', {
+                params: {
+                    email: value
+                }
+            }).then(function (response) {
+                // 409 if email exists
+                console.log(response)
+                if (response.status == 201) {
+
+                    self.setState({emailAvailable: 0})
+                }
+                else {
+                    self.setState({emailAvailable: 1})
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+
             this.setState({email: value, validEmail: 'success'});
         } else {
             this.setState({email: value, validEmail: 'error'})
         }
-
 
     }
 
@@ -82,8 +101,15 @@ class SignUp extends Component {
                                      type="email"
                                      onChange={this.handleInputEmail.bind(this)}
                                      onBlur={this.handleInputEmail.bind(this)}
-
                         /><FormControl.Feedback/>
+                        {
+                            ( !this.state.emailAvailable) ?
+                                <div class="alert alert-warning" role="alert">
+                                    {this.state.email} already exist!
+                                </div>
+                            :''
+                        }
+
                     </FormGroup>
 
                     <FormGroup controlId="formHorizontalPassword" validationState={this.state.validPwd}>
