@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
     // console.log(state.user);
     return {
         hasLogin: state.user.hasLogin,
-        address: state.user.adddress,
+        email: state.user.email,
         token: state.user.token,
         date_exp: state.user.date_exp,
     }
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleLoginButton: (address, pwd) => dispatch(doLogin(address, pwd)),
+        handleLoginButton: (email, pwd) => dispatch(doLogin(email, pwd)),
 
     }
 };

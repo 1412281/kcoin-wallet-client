@@ -8,7 +8,7 @@ export function doSignup(email, pwd) {
             password: pwd
         }).then(function (response) {
                 console.log(response);
-                alert("Your wallet ID is: " + response.data.id+"\nPlease check your email for your confirmation!");
+                alert("Your wallet ID is: " + response.data.address+"\nPlease check your email for your confirmation!");
                 dispatch({type: DOSIGNUP});
         }).catch(function (error) {
                 console.log(error);
@@ -17,10 +17,10 @@ export function doSignup(email, pwd) {
     }
 }
 
-export function doLogin(address, pwd) {
+export function doLogin(email, pwd) {
     return (dispatch) => {
         axios.post('/wallet/login', {
-            address: address,
+            email: email,
             password: pwd
             // id: '2ac90f7b5fcab6f7574e030952ace21d1f562e56',
             // password: '123123'
@@ -31,12 +31,12 @@ export function doLogin(address, pwd) {
             if (data.result === "Login Successful") {
                 const payload = {
                     hasLogin: true,
-                    id: data.id,
+                    email: email,
                     date_exp: data.date_exp,
                     token: data.token
                 };
                 alert('Login Success, go to Dashboard');
-
+                console.log(payload);
                 localStorage.setItem('dataLogin', JSON.stringify(payload));
                 dispatch({type: DOLOGIN, payload: payload});
                 // self.props.setLoginInfo(entity);

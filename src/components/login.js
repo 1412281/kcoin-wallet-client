@@ -8,9 +8,9 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            address: '',
+            email: '',
             pwd: '',
-            validAddress: null,
+            validEmail: null,
             validPwd: null,
             validForm: 1,
         }
@@ -26,10 +26,11 @@ class Login extends Component {
     }
     handleInputId(e) {
         let value = e.target.value;
-        if (value.length === 64) {
-            this.setState({address: value, validAddress: 'success'});
+        let emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        if (emailValid){
+            this.setState({email: value, validEmail: 'success'});
         } else {
-            this.setState({address: value, validAddress: 'error'})
+            this.setState({email: value, validEmail: 'error'})
         }
 
 
@@ -43,8 +44,8 @@ class Login extends Component {
     }
 
     handleLoginButtonClick() {
-        const {address, pwd} = this.state;
-        this.props.handleLoginButton(address, pwd);
+        const {email, pwd} = this.state;
+        this.props.handleLoginButton(email, pwd);
     }
 
     render() {
@@ -53,7 +54,7 @@ class Login extends Component {
         }
 
         this.validForm = 1;
-        if (this.state.validAddress === 'success' && this.state.validPwd === 'success') {
+        if (this.state.validEmail === 'success' && this.state.validPwd === 'success') {
             this.validForm = null;
         }
         else {
@@ -64,11 +65,11 @@ class Login extends Component {
 
             <div className="center">
                 <form>
-                    <FormGroup controlId="formHorizontalId" validationState={this.state.validAddress}>
-                        <ControlLabel>Id</ControlLabel>
+                    <FormGroup controlId="formHorizontalEmail" validationState={this.state.validEmail}>
+                        <ControlLabel>Email</ControlLabel>
 
                         <FormControl value={this.state.adddress}
-                                     type="text"
+                                     type="Email"
                                      onChange={this.handleInputId.bind(this)}
                                      onBlur={this.handleInputId.bind(this)}
 

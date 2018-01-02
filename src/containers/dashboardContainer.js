@@ -10,10 +10,9 @@ import {
 const mapStateToProps = (state) => {
     return {
         hasLogin: state.user.hasLogin,
-        id: state.user.id,
+        email: state.user.email,
         token: state.user.token,
         date_exp: state.user.date_exp,
-
         balance: state.dashboard.balance,
         limit: state.dashboard.limit,
         page: state.dashboard.page,
@@ -24,8 +23,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchDashboard: (id, date_exp, token) => dispatch(fetchDashboard(id, date_exp, token)),
-        fetchUserTransactions: (id, limit, page) => dispatch(fetchUserTransactions(id, limit, page)),
+        fetchDashboard: (email, date_exp, token) => dispatch(fetchDashboard(email, date_exp, token)),
+        fetchUserTransactions: (email, limit, page) => dispatch(fetchUserTransactions(email, limit, page)),
     }
 };
 

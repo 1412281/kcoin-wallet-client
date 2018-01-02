@@ -5,13 +5,13 @@ import {FETCH_TRANSACTIONS,
     FETCH_BALANCE
 } from "./actionType";
 
-export function fetchUserTransactions(id, limit, page) {
+export function fetchUserTransactions(email, limit, page) {
 
     return (dispatch) => {
         dispatch({type: FETCH_TRANSACTIONS});
         axios.get('/transaction/getRencentTransaction', {
             params: {
-                id: id,
+                email: email,
                 limit: limit > 0 ? limit : 5,
                 page: page > 1 ? page : 1,
             }
@@ -26,13 +26,14 @@ export function fetchUserTransactions(id, limit, page) {
     }
 }
 
-export function fetchDashboard(id, date_exp, token) {
+export function fetchDashboard(email, date_exp, token) {
     return (dispatch) => {
         const params = {
-            id: id,
+            email: email,
             date_exp: date_exp,
             token: token
         };
+        console.log(params);
         // console.log(params);
         return axios.get('/wallet/dashboard', {
             params: params

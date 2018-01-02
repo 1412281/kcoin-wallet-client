@@ -31,7 +31,7 @@ class SignUp extends Component {
             }).then(function (response) {
                 // 409 if email exists
                 console.log(response)
-                if (response.status == 201) {
+                if (response.status === 201) {
 
                     self.setState({emailUnavailable: 1})
                 }

@@ -37,6 +37,7 @@ class App extends Component {
                     <Route path="/createTransaction" render={() => <CreateTransactionContainer/>}/>
                     <Route path="/block" render={() => <Block/>}/>
                     <Route path="/transaction" render={() => <Transaction/>}/>
+
                 </Switch>
 
             </div>

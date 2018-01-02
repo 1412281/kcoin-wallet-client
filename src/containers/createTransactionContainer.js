@@ -8,7 +8,7 @@ import {
 
 const mapStateToProps = (state) => {
     return {
-        wallet_send: state.user.id,
+        wallet_send: state.user.address,
         balance: state.dashboard.balance,
         doneSend: state.transactionPublic.doneSend,
     }

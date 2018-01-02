@@ -15,23 +15,19 @@ class Dashboard extends Component {
 
 
     handleButtonNext() {
-        const {id, limit, page} = this.props;
-        this.props.fetchUserTransactions(id, limit, page + 1);
+        const {email, limit, page} = this.props;
+        this.props.fetchUserTransactions(email, limit, page + 1);
 
     }
     handleButtonPrevious() {
-        const {id, limit, page} = this.props;
-        const {fetchUserTransactions} = this.props;
-
-        fetchUserTransactions(id, limit, page - 1);
+        const {email, limit, page} = this.props;
+        this.props.fetchUserTransactions(email, limit, page - 1);
 
     }
     componentDidMount() {
-        const {id, date_exp, token, limit, page} = this.props;
-        const {fetchDashboard, fetchUserTransactions} = this.props;
-
-        fetchDashboard(id, date_exp, token);
-        fetchUserTransactions(id, limit, page);
+        const {email, date_exp, token, limit, page} = this.props;
+        this.props.fetchDashboard(email, date_exp, token);
+        this.props.fetchUserTransactions(email, limit, page);
     }
     render() {
         if (!this.props.hasLogin) {

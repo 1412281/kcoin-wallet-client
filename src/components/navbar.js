@@ -23,8 +23,8 @@ export default class NavbarInstance extends Component {
         }
         else {
             log = <NavLogout doLogout={doLogout}/>;
-            const {id, date_exp, token} = this.props;
-            this.props.fetchDashboard(id, date_exp, token);
+            const {email, date_exp, token} = this.props;
+            this.props.fetchDashboard(email, date_exp, token);
         }
         return (
                 <div>

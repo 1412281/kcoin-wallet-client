@@ -7,7 +7,7 @@ import {fetchDashboard} from "../actions/dashboardActions";
 const mapStateToProps = (state) => {
     return {
         hasLogin: state.user.hasLogin,
-        id: state.user.id,
+        email: state.user.email,
         token: state.user.token,
         date_exp: state.user.date_exp,
     }
