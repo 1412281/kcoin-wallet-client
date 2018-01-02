@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         doLogout: () => dispatch(doLogout()),
         checkHasLogin: () => dispatch(checkHasLogin()),
-        fetchDashboard: (id, date_exp, token) => dispatch(fetchDashboard(id, date_exp, token)),
+        fetchDashboard: (email, date_exp, token) => dispatch(fetchDashboard(email, date_exp, token)),
     }
 }
 

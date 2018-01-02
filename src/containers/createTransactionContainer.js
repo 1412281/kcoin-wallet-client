@@ -8,6 +8,7 @@ import {
 
 const mapStateToProps = (state) => {
     return {
+        email: state.user.email,
         wallet_send: state.user.address,
         balance: state.dashboard.balance,
         doneSend: state.transactionPublic.doneSend,
@@ -16,7 +17,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createTransaction: (coin, wallet_send, wallet_receive) => dispatch(createTransaction(coin, wallet_send, wallet_receive)),
+        createTransaction: (coin, email, wallet_receive) => dispatch(createTransaction(coin, email, wallet_receive)),
         checkWalletAvailable: (wallet) => checkWalletAvailable(wallet),
     }
 };

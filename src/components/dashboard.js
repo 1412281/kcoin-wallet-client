@@ -27,7 +27,7 @@ class Dashboard extends Component {
     componentDidMount() {
         const {email, date_exp, token, limit, page} = this.props;
         this.props.fetchDashboard(email, date_exp, token);
-        this.props.fetchUserTransactions(email, limit, page);
+        // this.props.fetchUserTransactions(email, limit, page);
     }
     render() {
         if (!this.props.hasLogin) {

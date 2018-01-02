@@ -33,7 +33,8 @@ export function doLogin(email, pwd) {
                     hasLogin: true,
                     email: email,
                     date_exp: data.date_exp,
-                    token: data.token
+                    token: data.token,
+                    address: data.address
                 };
                 alert('Login Success, go to Dashboard');
                 console.log(payload);
@@ -65,17 +66,19 @@ export function checkHasLogin() {
     return (dispatch) => {
         const store = localStorage.getItem('dataLogin');
         const data = JSON.parse(store);
-        // console.log(data);
+        console.log(data);
 
         if (data !== null) {
+            console.log('has login');
             if (!sessionLoginHasExpired(data.date_exp)) {
                 const payload = {
                     hasLogin: true,
-                    id: data.id,
+                    email: data.email,
                     date_exp: data.date_exp,
-                    token: data.token
+                    token: data.token,
+                    address: data.address
                 };
-                localStorage.setItem('dataLogin', JSON.stringify(payload));
+                // localStorage.setItem('dataLogin', JSON.stringify(payload));
                 dispatch({type: DOLOGIN, payload: payload});
             }
         }

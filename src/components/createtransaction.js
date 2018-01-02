@@ -15,6 +15,7 @@ export default class CreateTransaction extends Component {
     }
 
     componentWillMount() {
+        console.log(this.props);
         if (!this.props.wallet_send) {
             return (<Redirect  to={'/login'}/>);
         }
@@ -28,10 +29,10 @@ export default class CreateTransaction extends Component {
             // console.log('111');
             self.setState({wallet_receive: value, validWallet: 'warningSelf'});
         }
-        else if (value.length === 40) {
+        else if (value.length === 64) {
 
             this.props.checkWalletAvailable(value).then(function (result) {
-                console.log(result);
+                console.log(result.data);
                 if (result.data) {
                     self.setState({wallet_receive: value, validWallet: 'success'});
                 }
@@ -62,9 +63,9 @@ export default class CreateTransaction extends Component {
     }
 
     handleButtonSend(e) {
-        const {wallet_send} = this.props;
+        const {email} = this.props;
         const {coin, wallet_receive} = this.state;
-        this.props.createTransaction(coin, wallet_send, wallet_receive);
+        this.props.createTransaction(coin, email, wallet_receive);
 
     }
 
@@ -82,16 +83,16 @@ export default class CreateTransaction extends Component {
         let helpblockCoin;
         switch (this.state.validWallet) {
             case 'success':
-                helpblockID = 'This ID is Available';
+                helpblockID = 'This Wallet is in System';
                 break;
             case 'warning':
-                helpblockID = 'This ID is NOT Existing';
+                helpblockID = 'This wallet is NOT in System';
                 break;
             case 'warningSelf':
                 helpblockID = 'You can Not send your self';
                 break;
             default:
-                helpblockID = 'ID must have 40 characters';
+                helpblockID = 'Address Wallet must have 64 characters';
         }
 
         switch (this.state.validCoin) {

@@ -6,6 +6,7 @@ const initState = {
     email: '',
     token: '',
     date_exp: '',
+    address: ''
 };
 
 export default function userReducer(state = initState, action) {
@@ -20,7 +21,8 @@ export default function userReducer(state = initState, action) {
                 hasLogin: true,
                 email: payload.email,
                 token: payload.token,
-                date_exp: payload.date_exp
+                date_exp: payload.date_exp,
+                address: payload.address
             });
         case DOLOGOUT:
             return initState;

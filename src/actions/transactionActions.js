@@ -7,12 +7,12 @@ import {
 } from "./actionType";
 
 
-export function createTransaction(coin, wallet_send, wallet_receive) {
+export function createTransaction(coin, email, wallet_receive) {
     return (dispatch) => {
         axios.post('/transaction/createTransaction', {
             coin: coin,
-            wallet_send: wallet_send,
-            wallet_receive: wallet_receive
+            email: email,
+            address_receive: wallet_receive
         })
             .then(function (response) {
                 console.log(response);
@@ -28,9 +28,9 @@ export function createTransaction(coin, wallet_send, wallet_receive) {
 }
 
 export function checkWalletAvailable(wallet) {
-    return axios.get('/wallet/checkexist', {
+    return axios.get('/wallet/checkwalletexist', {
         params: {
-            id: wallet,
+            address: wallet,
         }
     });
 }
