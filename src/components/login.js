@@ -8,9 +8,9 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
+            address: '',
             pwd: '',
-            validId: null,
+            validAddress: null,
             validPwd: null,
             validForm: 1,
         }
@@ -26,10 +26,10 @@ class Login extends Component {
     }
     handleInputId(e) {
         let value = e.target.value;
-        if (value.length === 40) {
-            this.setState({id: value, validId: 'success'});
+        if (value.length === 64) {
+            this.setState({address: value, validAddress: 'success'});
         } else {
-            this.setState({id: value, validId: 'error'})
+            this.setState({address: value, validAddress: 'error'})
         }
 
 
@@ -38,25 +38,22 @@ class Login extends Component {
     handleInputPassword(e) {
         let value = e.target.value;
         let passwordValid = value.length >= 6 ? 'success' : 'error';
-
         this.setState({pwd: value, validPwd: passwordValid});
 
     }
 
     handleLoginButtonClick() {
-        const {id, pwd} = this.state;
-        this.props.handleLoginButton(id, pwd);
+        const {address, pwd} = this.state;
+        this.props.handleLoginButton(address, pwd);
     }
 
     render() {
         if (this.checkHasLogin()) {
-
-
             return (<Redirect  to={'/dashboard'}/>);
         }
 
         this.validForm = 1;
-        if (this.state.validId === 'success' && this.state.validPwd === 'success') {
+        if (this.state.validAddress === 'success' && this.state.validPwd === 'success') {
             this.validForm = null;
         }
         else {
@@ -67,10 +64,10 @@ class Login extends Component {
 
             <div className="center">
                 <form>
-                    <FormGroup controlId="formHorizontalId" validationState={this.state.validId}>
+                    <FormGroup controlId="formHorizontalId" validationState={this.state.validAddress}>
                         <ControlLabel>Id</ControlLabel>
 
-                        <FormControl value={this.state.id}
+                        <FormControl value={this.state.adddress}
                                      type="text"
                                      onChange={this.handleInputId.bind(this)}
                                      onBlur={this.handleInputId.bind(this)}

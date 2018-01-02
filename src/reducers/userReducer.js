@@ -3,7 +3,7 @@ import {DOLOGIN, DOLOGOUT, DOSIGNUP} from '../actions/actionType'
 const initState = {
     doneSignUp: false,
     hasLogin: false,
-    id: '',
+    address: '',
     token: '',
     date_exp: '',
 };
@@ -18,7 +18,7 @@ export default function userReducer(state = initState, action) {
             const payload = action.payload;
             return Object.assign({}, state, {
                 hasLogin: true,
-                id: payload.id,
+                address: payload.address,
                 token: payload.token,
                 date_exp: payload.date_exp
             });

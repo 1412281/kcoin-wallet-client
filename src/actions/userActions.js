@@ -17,10 +17,10 @@ export function doSignup(email, pwd) {
     }
 }
 
-export function doLogin(id, pwd) {
+export function doLogin(address, pwd) {
     return (dispatch) => {
         axios.post('/wallet/login', {
-            id: id,
+            address: address,
             password: pwd
             // id: '2ac90f7b5fcab6f7574e030952ace21d1f562e56',
             // password: '123123'
