@@ -17,7 +17,7 @@ export function doAdminLogin(email, pwd) {
                     date_exp: data.date_exp,
                     token: data.token
                 };
-                alert('Login Success, go to Admin Dashboard');
+                console.log(payload)
 
                 localStorage.setItem('dataAdminLogin', JSON.stringify(payload));
                 dispatch({type: DOADMINLOGIN, payload: payload});
