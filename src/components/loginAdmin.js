@@ -7,6 +7,10 @@ class LoginAdmin extends Component {
 
     constructor(props) {
         super(props);
+        this.props.checkHasAdminLogin()
+        if (this.props.hasAdminLogin) {
+            return (<Redirect  to={'/admin/dashboard'}/>);
+        }
         this.state = {
             email: '',
             pwd: '',

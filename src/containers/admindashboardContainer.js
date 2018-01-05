@@ -16,7 +16,9 @@ const mapStateToProps = (state) => {
         email: state.admin.email,
         token: state.admin.token,
         date_exp: state.admin.date_exp,
-
+        limit: state.admindashboard.limit,
+        page: state.admindashboard.page,
+        users_balance: state.admindashboard.users_balance
     }
 };
 

@@ -13,19 +13,24 @@ export default class NavbarInstance extends Component {
     }
 
     render() {
-
         let log;
-        console.log(this.props);
         const {doLogout} = this.props;
         if (!this.props.hasLogin) {
             log = <NavLogin/>;
-
         }
         else {
             log = <NavLogout doLogout={doLogout}/>;
-            const {id, date_exp, token} = this.props;
-            this.props.fetchDashboard(id, date_exp, token);
+            const {email, date_exp, token} = this.props;
+            this.props.fetchDashboard(email, date_exp, token);
         }
+
+        if (!this.props.hasAdminLogin) {
+            log = <NavLogin/>;
+        }
+        else {
+            log = <NavAdminLogout doAdminLogout={this.props.doAdminLogout}/>;
+        }
+
         return (
                 <div>
                 <Navbar inverse collapseOnSelect>
@@ -55,8 +60,8 @@ class NavLogin extends Component{
         return (
             <Nav pullRight>
                 <NavItem><Link to="/signup">SIGN UP</Link></NavItem>
-
                 <NavItem><Link to="/login">LOG IN</Link></NavItem>
+                <NavItem><Link to="/admin/login">ADMIN LOG IN</Link></NavItem>
             </Nav>
 
     )
@@ -81,5 +86,24 @@ class NavLogout extends Component{
             </Nav>
 
     )
+    }
+}
+
+class NavAdminLogout extends Component{
+
+    handleButtonLogout() {
+        this.props.doAdminLogout();
+    }
+
+    render() {
+        return (
+
+            <Nav pullRight>
+                {/*<NavItem><Link to="/dashboard">DASHBOARD</Link></NavItem>*/}
+                <NavItem><a onClick={this.handleButtonLogout.bind(this)}>LOG OUT</a></NavItem>
+
+            </Nav>
+
+        )
     }
 }

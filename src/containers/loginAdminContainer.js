@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {doAdminLogin} from '../actions/adminActions'
+import {doAdminLogin, checkHasAdminLogin} from '../actions/adminActions'
 import LoginAdmin from '../components/loginAdmin'
 
 
@@ -13,6 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        checkHasAdminLogin: () => dispatch(checkHasAdminLogin()),
         handleLoginButton: (email, pwd) => dispatch(doAdminLogin(email, pwd)),
     }
 };

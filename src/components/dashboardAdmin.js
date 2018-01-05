@@ -25,43 +25,36 @@ class DashboardAdmin extends Component {
     }
     componentDidMount() {
         const {email, date_exp, token, limit, page} = this.props;
-        const {fetchUsersBalance} = this.props;
-
-        fetchUsersBalance(email, date_exp, token, limit, page);
-        // fetchUserTransactions(id, limit, page);
+        this.props.fetchUsersBalance(email, date_exp, token, limit, page);
     }
 
-    generateUsersTable(){
+    generateUsersTable(data){
+        let totalBalance = 0;
+        data.map(function (object, i){
+            if (object.balance)
+            totalBalance += object.balance
+        })
         return (
             <table class="table">
                 <thead class="thead-default">
                 <tr>
                     <th  colspan={2} className={"UsersTableHeader"+" col-sm-8"}>
-                        100 User(s)
+                        {data.length} User(s)
                     </th>
-                    <th className={"BalanceTableHeader"}>#1Balance: 1000</th>
-                    <th className={"BalanceTableHeader"}>#2Balance: 2000</th>
+                    <th className={"BalanceTableHeader"}>#1Balance: {totalBalance}</th>
+                    <th className={"BalanceTableHeader"}>#2Balance: {totalBalance}</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>tdlam123@gmail.com</td>
-                    <td className={"BalanceTableRow RealBalance"}>150</td>
-                    <td className={"BalanceTableRow Balance"}>150</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>tdlam123@gmail.com</td>
-                    <td className={"BalanceTableRow RealBalance"}>150</td>
-                    <td className={"BalanceTableRow Balance"}>150</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>tdlam123@gmail.com</td>
-                    <td className={"BalanceTableRow RealBalance"}>150</td>
-                    <td className={"BalanceTableRow Balance"}>150</td>
-                </tr>
+                {data.map(function(object, i){
+                    return (<tr>
+                        <th scope="row">{i+1}</th>
+                        <td>{object.email}</td>
+                        <td>{object.balance}</td>
+                        <td>{object.balance}</td>
+                    </tr>);
+                })
+                }
                 </tbody>
             </table>
         );
@@ -73,7 +66,7 @@ class DashboardAdmin extends Component {
         return(
             <div className='dashboard'>
                 <div className={"col-sm-6"}>
-                    {this.generateUsersTable()}
+                    {this.generateUsersTable(this.props.users_balance)}
                     {/*<Button onClick={() => this.handleButtonPrevious()}>Previous</Button>*/}
                     {/*<Button onClick={() => this.handleButtonNext()}>Next</Button>*/}
                 </div>

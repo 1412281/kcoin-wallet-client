@@ -18,6 +18,7 @@ export function fetchUsersBalance(email, date_exp, token, limit, page) {
 
             }
             const data = response.data;
+            console.log(data);
             dispatch({type: FETCH_USERS_BALANCE, users_balance: data})
         }).catch(function (error) {
             console.log(error);

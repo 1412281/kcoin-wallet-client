@@ -12,7 +12,7 @@ const initState = {
     page: 1
 };
 
-export default function transactionPublic(state = initState , action) {
+export default function admindashboardReducer(state = initState , action) {
     switch (action.type) {
         case FETCH_USERS_BALANCE:
             return Object.assign({}, state, {

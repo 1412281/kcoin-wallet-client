@@ -4,7 +4,7 @@ const initState = {
     hasLogin: false,
     email: '',
     token: '',
-    date_exp: '',
+    date_exp: ''
 };
 
 export default function adminReducer(state = initState, action) {

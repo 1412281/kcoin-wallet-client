@@ -9,7 +9,6 @@ export function doAdminLogin(email, pwd) {
         }).then(function (response) {
             const data = response.data;
             // console.log(data);
-
             if (data.result === "Login Successful") {
                 const payload = {
                     hasAdminLogin: true,
@@ -21,10 +20,6 @@ export function doAdminLogin(email, pwd) {
 
                 localStorage.setItem('dataAdminLogin', JSON.stringify(payload));
                 dispatch({type: DOADMINLOGIN, payload: payload});
-                // self.props.setLoginInfo(entity);
-
-                // console.log(self.props.hasLogin);
-                // self.setState({hasLogin: true});
 
             }
             else {
