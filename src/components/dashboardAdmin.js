@@ -29,10 +29,12 @@ class DashboardAdmin extends Component {
     }
 
     generateUsersTable(data){
-        let totalBalance = 0;
+        let totalBalance = 0, totalrealBalance = 0;
         data.map(function (object, i){
             if (object.balance)
             totalBalance += object.balance
+            if (object.balance)
+            totalrealBalance += object.real_balance
         })
         return (
             <table class="table">
@@ -42,7 +44,7 @@ class DashboardAdmin extends Component {
                         {data.length} User(s)
                     </th>
                     <th className={"BalanceTableHeader"}>#1Balance: {totalBalance}</th>
-                    <th className={"BalanceTableHeader"}>#2Balance: {totalBalance}</th>
+                    <th className={"BalanceTableHeader"}>#2Balance: {totalrealBalance}</th>
                 </tr>
                 </thead>
                 <tbody>
