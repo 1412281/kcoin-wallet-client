@@ -8,3 +8,26 @@
     border: 0px;
     padding: 10px;
 }
+
+.UsersTableHeader {
+    font-size: 20px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.BalanceTableHeader{
+    font-size: 15px;
+    text-align: right;
+}
+
+.BalanceTableRow{
+    text-align: right;
+}
+.BalanceTableRow.RealBalance{
+ color: coral;
+}
+
+.BalanceTableRow.Balance {
+    color: darkorchid;
+}
+
