@@ -7,9 +7,6 @@ class Dashboard extends Component {
 
 
     componentWillMount() {
-        if (!this.props.hasLogin) {
-            return (<Redirect  to={'/login'}/>);
-        }
 
     }
 
@@ -30,8 +27,8 @@ class Dashboard extends Component {
         // this.props.fetchUserTransactions(email, limit, page);
     }
     render() {
-        if (!this.props.hasLogin) {
-            return (<Redirect  to={'/login'}/>);
+        if (!(this.props.hasLogin || this.props.checkHasUserLogin())) {
+            return (<Redirect  to={'/'}/>);
         }
         return(
             <div className='dashboard'>

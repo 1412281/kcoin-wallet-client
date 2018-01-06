@@ -43,9 +43,7 @@ export function checkHasAdminLogin() {
         const store = localStorage.getItem('dataAdminLogin');
         const data = JSON.parse(store);
         if (data !== null) {
-            if (sessionLoginHasExpired(data.date_exp)) {
                 return true;
-            }
         }
         return false
 }

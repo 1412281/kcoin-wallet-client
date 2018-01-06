@@ -5,9 +5,6 @@ import {Redirect} from "react-router-dom";
 class TransactionAdmin extends Component {
     constructor(props) {
         super(props);
-        if ( !this.props.checkHasAdminLogin()) {
-            return (<Redirect  to={'/admin/login'}/>);
-        }
     }
     componentWillMount() {
     }
@@ -61,6 +58,12 @@ class TransactionAdmin extends Component {
         );
     }
     render() {
+        if (this.props.checkHasUserLogin()) {
+            return (<Redirect  to={'/'}/>);
+        }
+        if ( !this.props.checkHasAdminLogin()) {
+            return (<Redirect  to={'/admin/login'}/>);
+        }
         if (!this.props.fetched) {
             const {email, date_exp, token, limit, page} = this.props;
             this.props.fetchAdminTransactions(email, date_exp, token, limit, page);
