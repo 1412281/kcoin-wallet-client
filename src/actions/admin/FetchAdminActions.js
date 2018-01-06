@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {FETCH_ADMIN_TRANSACTIONS, FETCH_USERS_BALANCE} from "../actionType";
 
-export function fetchUsersBalance(email, date_exp, token, limit, page) {
+export function fetchUsersBalance(email, date_exp, token, limit, cursor) {
     return (dispatch) => {
         console.log(email)
         console.log(token)
@@ -12,7 +12,7 @@ export function fetchUsersBalance(email, date_exp, token, limit, page) {
                 date_exp: date_exp,
                 token: token,
                 limit: limit,
-                page: page
+                cursor: cursor
             }
         }).then(function (response) {
             if (response.status == 403) {
@@ -20,7 +20,7 @@ export function fetchUsersBalance(email, date_exp, token, limit, page) {
             }
             const data = response.data;
             console.log(data);
-            dispatch({type: FETCH_USERS_BALANCE, users_balance: data})
+            dispatch({type: FETCH_USERS_BALANCE, payload: data})
         }).catch(function (error) {
             console.log(error);
         });
