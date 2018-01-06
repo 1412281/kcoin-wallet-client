@@ -57,12 +57,25 @@ export function doLogin(email, pwd) {
 }
 
 export function doLogout() {
-    localStorage.setItem('dataLogin', null);
+    return (dispatch) => {
+        localStorage.setItem('dataLogin', null);
+        dispatch({type: DOLOGOUT})
+        window.location.reload();
+    }
+}
+export function checkHasLogin() {
+        const store = localStorage.getItem('dataLogin');
+        const data = JSON.parse(store);
 
-    return {type: DOLOGOUT}
+        if (data !== null) {
+            if (sessionLoginHasExpired(data.date_exp)) {
+                return true;
+            }
+        }
+        return false;
 }
 
-export function checkHasLogin() {
+export function reloadUserLogin() {
     return (dispatch) => {
         const store = localStorage.getItem('dataLogin');
         const data = JSON.parse(store);
@@ -80,10 +93,11 @@ export function checkHasLogin() {
                 };
                 // localStorage.setItem('dataLogin', JSON.stringify(payload));
                 dispatch({type: DOLOGIN, payload: payload});
+                return true;
             }
         }
+        return false;
     }
-
 }
 
 function sessionLoginHasExpired(date_exp) {

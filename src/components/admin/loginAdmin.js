@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import {Redirect } from 'react-router-dom';
-import '../App.css'
+import '../../App.css'
 
 class LoginAdmin extends Component {
 
     constructor(props) {
         super(props);
-        this.props.checkHasAdminLogin()
-        if (this.props.hasAdminLogin) {
-            return (<Redirect  to={'/admin/dashboard'}/>);
-        }
         this.state = {
             email: '',
             pwd: '',
@@ -52,7 +48,12 @@ class LoginAdmin extends Component {
     }
 
     render() {
-        if (this.checkHasAdminLogin()) {
+        if (this.props.checkHasUserLogin())
+        {
+            return (<Redirect  to={'/'}/>);
+        }
+        if (this.props.checkHasAdminLogin())
+        {
             return (<Redirect  to={'/admin/dashboard'}/>);
         }
         if (this.state.validAddress === 'success' && this.state.validPwd === 'success') {

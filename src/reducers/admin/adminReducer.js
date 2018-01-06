@@ -1,4 +1,4 @@
-import {DOADMINLOGIN, DOADMINLOGOUT} from '../actions/actionType'
+import {DOADMINLOGIN, DOADMINLOGOUT} from '../../actions/actionType'
 
 const initState = {
     hasLogin: false,

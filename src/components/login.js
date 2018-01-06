@@ -16,14 +16,6 @@ class Login extends Component {
         }
     }
 
-    checkHasLogin() {
-        // console.log(this.props);
-        if (this.props.hasLogin) {
-            console.log('has Login');
-            return true;
-        }
-        return false;
-    }
     handleInputId(e) {
         let value = e.target.value;
         let emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -49,10 +41,12 @@ class Login extends Component {
     }
 
     render() {
-        if (this.checkHasLogin()) {
-            return (<Redirect  to={'/dashboard'}/>);
+        if (this.props.checkHasAdminLogin()) {
+            return (<Redirect  to={'/admin/dashboard'}/>);
         }
-
+        if (this.props.checkHasUserLogin()) {
+            return (<Redirect  to={'/'}/>);
+        }
         this.validForm = 1;
         if (this.state.validEmail === 'success' && this.state.validPwd === 'success') {
             this.validForm = null;

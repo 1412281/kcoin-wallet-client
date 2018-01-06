@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import Navbar from '../components/navbar'
-import {doLogout, checkHasLogin} from "../actions/userActions";
-import {doAdminLogout, checkHasAdminLogin} from "../actions/adminActions";
+import {doLogout, checkHasLogin, reloadUserLogin} from "../actions/userActions";
+import {doAdminLogout, checkHasAdminLogin, reloadAdminLogin} from "../actions/admin/adminActions";
 import {fetchDashboard} from "../actions/dashboardActions";
 
 
@@ -20,8 +20,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         doLogout: () => dispatch(doLogout()),
         doAdminLogout: () => dispatch(doAdminLogout()),
-        checkHasLogin: () => dispatch(checkHasLogin()),
-        checkHasAdminLogin: () => dispatch(checkHasAdminLogin()),
+        checkHasUserLogin: () => (checkHasLogin()),
+        reloadAdminLogin: () => dispatch(reloadAdminLogin()),
+        reloadUserLogin: () => dispatch(reloadUserLogin()),
+        checkHasAdminLogin: () => (checkHasAdminLogin()),
         fetchDashboard: (id, date_exp, token) => dispatch(fetchDashboard(id, date_exp, token)),
     }
 }

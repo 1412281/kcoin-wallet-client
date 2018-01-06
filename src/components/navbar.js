@@ -1,35 +1,43 @@
 import React, {Component} from 'react';
 import {Navbar, NavItem, Nav} from 'react-bootstrap';
 import {
-    Link,
+    Link, Redirect
 } from 'react-router-dom';
 
 import '../App.css'
 
 export default class NavbarInstance extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     componentWillMount() {
-        this.props.checkHasLogin();
     }
 
     render() {
         let log;
         const {doLogout} = this.props;
-        if (!this.props.hasLogin) {
+        this.props.reloadUserLogin()
+        this.props.reloadAdminLogin()
+        console.log(this.props.checkHasUserLogin())
+        console.log(this.props.checkHasAdminLogin())
+        console.log(this.props.hasLogin)
+        console.log(this.props.hasAdminLogin)
+        if (!(this.props.checkHasUserLogin() || this.props.hasLogin) && !(this.props.checkHasAdminLogin() ||this.props.hasAdminLogin)) {
             log = <NavLogin/>;
         }
         else {
-            log = <NavLogout doLogout={doLogout}/>;
-            const {email, date_exp, token} = this.props;
-            this.props.fetchDashboard(email, date_exp, token);
-        }
-
-        if (!this.props.hasAdminLogin) {
-            log = <NavLogin/>;
-        }
-        else {
-            log = <NavAdminLogout doAdminLogout={this.props.doAdminLogout}/>;
-        }
+            if (this.props.checkHasUserLogin() || this.props.hasLogin){
+                log = <NavLogout doLogout={doLogout}/>;
+                const {email, date_exp, token} = this.props;
+            }   // this.props.fetchDashboard(email, date_exp, token);
+            else
+                if (this.props.checkHasAdminLogin() || this.props.hasAdminLogin)
+                {
+                    log = <NavAdminLogout doAdminLogout={this.props.doAdminLogout}/>;
+                }
+            }
 
         return (
                 <div>
@@ -72,10 +80,9 @@ class NavLogout extends Component{
 
     handleButtonLogout() {
         this.props.doLogout();
+
     }
     render() {
-        // console.log(this.props);
-
         return (
 
             <Nav pullRight>
@@ -93,6 +100,7 @@ class NavAdminLogout extends Component{
 
     handleButtonLogout() {
         this.props.doAdminLogout();
+        return (<Redirect  to={'/admin/login'}/>);
     }
 
     render() {

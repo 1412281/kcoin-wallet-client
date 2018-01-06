@@ -10,9 +10,10 @@ import CreateTransactionContainer from './containers/createTransactionContainer'
 import HomeContainer from './containers/homeContainer';
 import SignUpContainer from './containers/signupContainer';
 import LoginContainer from './containers/loginContainer';
-import LoginAdminContainer from './containers/loginAdminContainer';
+import LoginAdminContainer from './containers/admin/loginAdminContainer';
 import DashboardContainer from './containers/dashboardContainer';
-import AdminDashboardContainer from './containers/admindashboardContainer';
+import AdminDashboardContainer from './containers/admin/admindashboardContainer';
+import AdminTransactionContainer from './containers/admin/adminTransactionContainer';
 
 import axios from 'axios';
 import Block from "./components/block";
@@ -35,12 +36,13 @@ class App extends Component {
                     <Route exact path="/" component={HomeContainer}/>
                     <Route path="/signup" component={SignUpContainer}/>
                     <Route path="/login" render={() => <LoginContainer/>}/>
-                    <Route path="/admin/login" render={() => <LoginAdminContainer/>}/>
-                    <Route path="/admin/dashboard" render={() => <AdminDashboardContainer/>}/>
                     <Route path="/dashboard" render={() => <DashboardContainer/>}/>
                     <Route path="/createTransaction" render={() => <CreateTransactionContainer/>}/>
                     <Route path="/block" render={() => <Block/>}/>
                     <Route path="/transaction" render={() => <Transaction/>}/>
+                    <Route path="/admin/login" render={() => <LoginAdminContainer/>}/>
+                    <Route path="/admin/dashboard" render={() => <AdminDashboardContainer/>}/>
+                    <Route path="/admin/transaction" render={() => <AdminTransactionContainer/>}/>
 
                 </Switch>
 

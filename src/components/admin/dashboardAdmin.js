@@ -3,12 +3,13 @@ import {Button} from 'react-bootstrap';
 import {Redirect} from "react-router-dom";
 
 class DashboardAdmin extends Component {
-
-    componentWillMount() {
-        this.props.checkHasAdminLogin()
-        if (!this.props.hasLogin) {
+    constructor(props) {
+        super(props);
+        if ( !this.props.checkHasAdminLogin()) {
             return (<Redirect  to={'/admin/login'}/>);
         }
+    }
+    componentWillMount() {
     }
 
     handleButtonNext() {
@@ -19,13 +20,10 @@ class DashboardAdmin extends Component {
     handleButtonPrevious() {
         const {id, limit, page} = this.props;
         const {fetchUserTransactions} = this.props;
-
         fetchUserTransactions(id, limit, page - 1);
 
     }
     componentDidMount() {
-        const {email, date_exp, token, limit, page} = this.props;
-        this.props.fetchUsersBalance(email, date_exp, token, limit, page);
     }
 
     generateUsersTable(data){
@@ -62,8 +60,9 @@ class DashboardAdmin extends Component {
         );
     }
     render() {
-        if (!this.props.hasLogin) {
-            return (<Redirect  to={'/admin/login'}/>);
+        if (!this.props.fetched) {
+            const {email, date_exp, token, limit, page} = this.props;
+            this.props.fetchUsersBalance(email, date_exp, token, limit, page);
         }
         return(
             <div className='dashboard'>

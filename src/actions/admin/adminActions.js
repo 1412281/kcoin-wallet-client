@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {DOADMINLOGIN, DOADMINLOGOUT} from "./actionType";
+import {DOADMINLOGIN, DOADMINLOGOUT} from "../actionType";
 
 export function doAdminLogin(email, pwd) {
     return (dispatch) => {
@@ -33,11 +33,24 @@ export function doAdminLogin(email, pwd) {
 }
 
 export function doAdminLogout() {
-    localStorage.setItem('dataAdminLogin', null);
-    return {type: DOADMINLOGOUT}
+    return (dispatch) => {
+        localStorage.setItem('dataAdminLogin', null);
+        dispatch({type: DOADMINLOGOUT})
+        window.location.reload();
+    }
+}
+export function checkHasAdminLogin() {
+        const store = localStorage.getItem('dataAdminLogin');
+        const data = JSON.parse(store);
+        if (data !== null) {
+            if (sessionLoginHasExpired(data.date_exp)) {
+                return true;
+            }
+        }
+        return false
 }
 
-export function checkHasAdminLogin() {
+export function reloadAdminLogin() {
     return (dispatch) => {
         const store = localStorage.getItem('dataAdminLogin');
         const data = JSON.parse(store);
@@ -51,10 +64,12 @@ export function checkHasAdminLogin() {
                     date_exp: data.date_exp,
                     token: data.token
                 };
-                localStorage.setItem('dataAdminLogin', JSON.stringify(payload));
+                // localStorage.setItem('dataAdminLogin', JSON.stringify(payload));
                 dispatch({type: DOADMINLOGIN, payload: payload});
+                return true;
             }
         }
+        return false
     }
 
 }
