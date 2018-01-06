@@ -5,6 +5,9 @@ import {
 
 const initState = {
     users_balance: [],
+    totaluser: 0,
+    total_balance: 0,
+    total_balance: 0,
     fetching: false,
     fetched: false,
     error: null,
@@ -15,9 +18,6 @@ const initState = {
 };
 
 const combine2array = function (arr1, arr2) {
-    console.log("combine 2 array    ")
-    console.log(arr1)
-    console.log(arr2)
     arr2.map( function (element) {
         arr1.push(element)
     })
@@ -33,7 +33,10 @@ export default function admindashboardReducer(state = initState , action) {
                 fetched: true,
                 transactions: action.payload,
                 next: action.payload.next,
-                cursor: action.payload.cursor
+                cursor: action.payload.cursor,
+                total_user: action.payload.total_user,
+                total_balance: action.payload.total_balance,
+                total_real_balance: action.payload.total_real_balance,
             });
         default:
             return state;

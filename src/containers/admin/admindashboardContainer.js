@@ -20,8 +20,10 @@ const mapStateToProps = (state) => {
         cursor: state.admindashboard.cursor,
         users_balance: state.admindashboard.users_balance,
         fetched: state.admindashboard.fetched,
-        fetching:  state.admindashboard.fetching,
-        next: state.admindashboard.next
+        next: state.admindashboard.next,
+        total_user: state.admindashboard.total_user,
+        total_balance: state.admindashboard.total_balance,
+        total_real_balance: state.admindashboard.total_real_balance,
     }
 };
 

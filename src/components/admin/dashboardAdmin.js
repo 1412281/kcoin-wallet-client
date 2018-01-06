@@ -27,23 +27,16 @@ class DashboardAdmin extends Component {
     }
 
     generateUsersTable(data){
-        let totalBalance = 0, totalrealBalance = 0;
-        data.map(function (object, i){
-            if (object.balance)
-            totalBalance += parseInt(object.balance)
-            if (object.balance)
-            totalrealBalance += parseInt(object.real_balance)
-        })
         return (
             <table class="table">
                 <thead class="thead-default">
                 <tr>
                     <th  colspan={2} className={"UsersTableHeader"+" col-sm-8"}>
-                        User(s)
+                        {this.props.total_user} User(s)
                     </th>
                     <th className={"UsersTableHeader"}>Address</th>
-                    <th className={"BalanceTableHeader"}>#1Balance: {totalBalance}</th>
-                    <th className={"BalanceTableHeader"}>#2Balance: {totalrealBalance}</th>
+                    <th className={"BalanceTableHeader"}>#1Balance: {this.props.total_balance}</th>
+                    <th className={"BalanceTableHeader"}>#2Balance: {this.props.total_real_balance}</th>
                 </tr>
                 </thead>
                 <tbody>
