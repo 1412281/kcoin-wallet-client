@@ -13,7 +13,7 @@ const initState = {
     fetched: false,
     error: null,
     limit: 10,
-    page: 1,
+    cursor: '',
     doneSend: false
 
 };
@@ -36,8 +36,8 @@ export default function transactionPublic(state = initState , action) {
             return Object.assign({}, state, {
                 fetching: false,
                 fetched: true,
-                transactions: action.payload,
-                page: action.page
+                transactions: action.payload.data,
+                cursor: action.payload.cursor
             });
 
         default:

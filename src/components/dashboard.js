@@ -15,28 +15,34 @@ class Dashboard extends Component {
 
 
     handleButtonNext() {
-        const {email, limit, page} = this.props;
-        this.props.fetchUserTransactions(email, limit, page + 1);
+        const {email, limit, next} = this.props;
+        console.log(next);
+        this.props.fetchUserTransactionsNext(email, limit, next);
 
     }
     handleButtonPrevious() {
-        const {email, limit, page} = this.props;
-        this.props.fetchUserTransactions(email, limit, page - 1);
+        const {email, limit, previous} = this.props;
+        this.props.fetchUserTransactionsPrevious(email, limit, previous.pop());
 
     }
     componentDidMount() {
-        const {email, date_exp, token, limit, page} = this.props;
+        const {email, date_exp, token, limit} = this.props;
         this.props.fetchDashboard(email, date_exp, token);
-        // this.props.fetchUserTransactions(email, limit, page);
+        this.props.fetchUserTransactions(email, limit, {});
     }
     render() {
         if (!this.props.hasLogin) {
             return (<Redirect  to={'/login'}/>);
         }
+        const fetching = this.props.fetching;
+        let transactions = this.props.transactions;
+        if (fetching === 'true') { transactions = []}
         return(
             <div className='dashboard'>
                 <h2>YOUR BALANCES:${this.props.balance}</h2>
-                <Transaction data={this.props.transactions}/>
+
+                <Transaction data={transactions}/>
+
                 <Button onClick={() => this.handleButtonPrevious()}>Previous</Button>
                 <Button onClick={() => this.handleButtonNext()}>Next</Button>
             </div>

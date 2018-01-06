@@ -3,7 +3,7 @@ import Dashboard from '../components/dashboard'
 
 import {
     fetchUserTransactions,
-    fetchDashboard,
+    fetchDashboard, fetchUserTransactionsPrevious,
 
 } from '../actions/dashboardActions'
 
@@ -15,16 +15,21 @@ const mapStateToProps = (state) => {
         date_exp: state.user.date_exp,
         balance: state.dashboard.balance,
         limit: state.dashboard.limit,
-        page: state.dashboard.page,
+        next: state.dashboard.next,
+        previous: state.dashboard.previous,
         transactions: state.dashboard.transactions,
         fetching:  state.dashboard.fetching,
+
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchDashboard: (email, date_exp, token) => dispatch(fetchDashboard(email, date_exp, token)),
-        fetchUserTransactions: (email, limit, page) => dispatch(fetchUserTransactions(email, limit, page)),
+        fetchUserTransactions: (email, limit, cursor) => dispatch(fetchUserTransactions(email, limit, cursor)),
+        fetchUserTransactionsNext: (email, limit, next) => dispatch(fetchUserTransactions(email, limit, next)),
+        fetchUserTransactionsPrevious: (email, limit, previous) => dispatch(fetchUserTransactionsPrevious(email, limit, previous)),
+
     }
 };
 

@@ -5,6 +5,7 @@ import {
     FETCH_TRANSACTIONS_REJECTED,
     FETCH_TRANSACTIONS_FULFILLED,
 } from "../actions/actionType";
+import {FETCH_TRANSACTIONS_PREVIOUS_FULFILLED} from "../actions/actionType";
 
 const initState = {
     balance: null,
@@ -12,8 +13,10 @@ const initState = {
     fetching: false,
     fetched: false,
     error: null,
-    limit: 5,
-    page: 1
+    limit: 3,
+    previous: [],
+    cursor: {},
+    next: {},
 };
 
 export default function transactionPublic(state = initState , action) {
@@ -27,13 +30,31 @@ export default function transactionPublic(state = initState , action) {
         case FETCH_TRANSACTIONS_REJECTED:
             return Object.assign({}, state, {fetching: false, error: action.payload});
         case FETCH_TRANSACTIONS_FULFILLED:
+            let previous = [];
+            if (JSON.stringify(state.cursor) !== JSON.stringify({})) {
+                previous = state.previous;
+                previous.push(state.cursor);
+            }
             return Object.assign({}, state, {
                 fetching: false,
                 fetched: true,
                 transactions: action.payload,
-                page: action.page
+                previous: previous,
+                next: action.payload.next,
+                cursor: action.payload.cursor
             });
-
+        case FETCH_TRANSACTIONS_PREVIOUS_FULFILLED:
+            
+            let previous2 = state.previous;
+            previous2.pop();
+            return Object.assign({}, state, {
+                fetching: false,
+                fetched: true,
+                transactions: action.payload,
+                previous: previous2,
+                next: action.payload.next,
+                cursor: action.payload.cursor,
+            });
         default:
             return state;
     }
