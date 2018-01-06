@@ -30,16 +30,16 @@ export default class CreateTransaction extends Component {
             self.setState({wallet_receive: value, validWallet: 'warningSelf'});
         }
         else if (value.length === 64) {
-
-            this.props.checkWalletAvailable(value).then(function (result) {
-                console.log(result.data);
-                if (result.data) {
+            //
+            // this.props.checkWalletAvailable(value).then(function (result) {
+            //     console.log(result.data);
+            //     if (result.data) {
                     self.setState({wallet_receive: value, validWallet: 'success'});
-                }
-                else {
-                    self.setState({wallet_receive: value, validWallet: 'warning'});
-                }
-            });
+            //     }
+            //     else {
+            //         self.setState({wallet_receive: value, validWallet: 'warning'});
+            //     }
+            // });
         } else {
             self.setState({wallet_receive: value, validWallet: 'error'})
         }
@@ -50,7 +50,7 @@ export default class CreateTransaction extends Component {
     handleInputCoin(e) {
         let value = e.target.value;
         if (value > 0) {
-            if (this.props.balance >= value) {
+            if (parseInt(this.props.balance) >= value) {
                 this.setState({coin: value, validCoin: 'success'});
             }
             else {
@@ -83,7 +83,7 @@ export default class CreateTransaction extends Component {
         let helpblockCoin;
         switch (this.state.validWallet) {
             case 'success':
-                helpblockID = 'This Wallet is in System';
+                helpblockID = '';
                 break;
             case 'warning':
                 helpblockID = 'This wallet is NOT in System';

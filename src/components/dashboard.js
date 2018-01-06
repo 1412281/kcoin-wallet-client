@@ -19,7 +19,7 @@ class Dashboard extends Component {
     }
     handleButtonPrevious() {
         const {email, limit, previous} = this.props;
-        this.props.fetchUserTransactionsPrevious(email, limit, previous.pop());
+        this.props.fetchUserTransactionsPrevious(email, limit, previous[previous.length - 1]);
 
     }
     componentDidMount() {

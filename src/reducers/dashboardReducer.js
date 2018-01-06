@@ -44,7 +44,7 @@ export default function transactionPublic(state = initState , action) {
                 cursor: action.payload.cursor
             });
         case FETCH_TRANSACTIONS_PREVIOUS_FULFILLED:
-            
+
             let previous2 = state.previous;
             previous2.pop();
             return Object.assign({}, state, {

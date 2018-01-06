@@ -7,27 +7,24 @@ export default class Home extends Component {
     componentDidMount() {
         console.log(this.props.blocks);
         const {limit, page} = this.props;
-        // this.props.dispatch(fetchPublicTransactions(limit, page));
-        // this.props.fetchPublicTransactions(limit, page);
+        this.props.fetchPublicBlocks(limit, page);
     }
 
 
     handleButtonNext() {
         const {limit, page} = this.props;
-        this.props.fetchPublicTransactions(limit, page + 1);
+        this.props.fetchPublicBlocks(limit, page + 1);
 
     }
     handleButtonPrevious() {
         const {limit, page} = this.props;
-        const {fetchPublicTransactions} = this.props;
-
-        fetchPublicTransactions(limit, page - 1);
+        this.props.fetchPublicBlocks(limit, page - 1);
 
     }
 
     render() {
         const {blocks, fetching} = this.props;
-        const isEmpty = blocks.length === 0;
+        const isEmpty = blocks === 0;
         console.log(fetching);
         return(
             <Grid>
