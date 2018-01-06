@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import Dashboard from '../components/dashboard'
-
+import {checkHasLogin} from "../actions/userActions";
 import {
     fetchUserTransactions,
     fetchDashboard, fetchUserTransactionsPrevious,
@@ -25,6 +25,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        checkHasUserLogin: () => (checkHasLogin()),
         fetchDashboard: (email, date_exp, token) => dispatch(fetchDashboard(email, date_exp, token)),
         fetchUserTransactions: (email, limit, cursor) => dispatch(fetchUserTransactions(email, limit, cursor)),
         fetchUserTransactionsNext: (email, limit, next) => dispatch(fetchUserTransactions(email, limit, next)),

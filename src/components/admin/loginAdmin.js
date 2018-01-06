@@ -17,7 +17,6 @@ class LoginAdmin extends Component {
     }
 
     checkHasAdminLogin() {
-        // console.log(this.props);
         if (this.props.hasAdminLogin) {
             console.log('has Admin Login');
             return true;
@@ -52,7 +51,7 @@ class LoginAdmin extends Component {
         {
             return (<Redirect  to={'/'}/>);
         }
-        if (this.props.checkHasAdminLogin())
+        if (this.props.checkHasAdminLogin() || this.props.hasAdminLogin)
         {
             return (<Redirect  to={'/admin/dashboard'}/>);
         }

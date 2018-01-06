@@ -9,7 +9,7 @@ import {
 import {
     checkHasAdminLogin
 } from '../../actions/admin/adminActions'
-
+import {checkHasLogin} from "../../actions/userActions";
 const mapStateToProps = (state) => {
     return {
         hasLogin: state.admin.hasLogin,
@@ -25,6 +25,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        checkHasUserLogin: () => (checkHasLogin()),
         checkHasAdminLogin: () => (checkHasAdminLogin()),
         fetchUsersBalance : (email, date_exp, token, limit, page) => dispatch(fetchUsersBalance(email, date_exp, token, limit, page))
     }

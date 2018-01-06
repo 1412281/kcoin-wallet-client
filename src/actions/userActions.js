@@ -68,9 +68,9 @@ export function checkHasLogin() {
         const data = JSON.parse(store);
 
         if (data !== null) {
-            if (sessionLoginHasExpired(data.date_exp)) {
+            // if (sessionLoginHasExpired(data.date_exp)) {
                 return true;
-            }
+            // }
         }
         return false;
 }

@@ -100,14 +100,14 @@ class NavAdminLogout extends Component{
 
     handleButtonLogout() {
         this.props.doAdminLogout();
-        return (<Redirect  to={'/admin/login'}/>);
     }
 
     render() {
         return (
 
             <Nav pullRight>
-                {/*<NavItem><Link to="/dashboard">DASHBOARD</Link></NavItem>*/}
+                <NavItem><Link to="/admin/dashboard">USERS BALANCE</Link></NavItem>
+                <NavItem><Link to="/admin/transaction">TRANSACTIONS</Link></NavItem>
                 <NavItem><a onClick={this.handleButtonLogout.bind(this)}>LOG OUT</a></NavItem>
 
             </Nav>
