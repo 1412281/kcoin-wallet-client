@@ -17,9 +17,13 @@ const mapStateToProps = (state) => {
         token: state.admin.token,
         date_exp: state.admin.date_exp,
         limit: state.admindashboard.limit,
-        page: state.admindashboard.page,
+        cursor: state.admindashboard.cursor,
         users_balance: state.admindashboard.users_balance,
-        fetched: state.admindashboard.fetched
+        fetched: state.admindashboard.fetched,
+        next: state.admindashboard.next,
+        total_user: state.admindashboard.total_user,
+        total_balance: state.admindashboard.total_balance,
+        total_real_balance: state.admindashboard.total_real_balance,
     }
 };
 
@@ -27,7 +31,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         checkHasUserLogin: () => (checkHasLogin()),
         checkHasAdminLogin: () => (checkHasAdminLogin()),
-        fetchUsersBalance : (email, date_exp, token, limit, page) => dispatch(fetchUsersBalance(email, date_exp, token, limit, page))
+        fetchUsersBalance : (email, date_exp, token, limit, cursor) => dispatch(fetchUsersBalance(email, date_exp, token, limit, cursor)),
+        fetchNextUsersBalance : (email, date_exp, token, limit, next) => dispatch(fetchUsersBalance(email, date_exp, token, limit, next))
     }
 };
 
