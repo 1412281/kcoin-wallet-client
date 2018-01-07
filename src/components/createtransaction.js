@@ -13,7 +13,10 @@ export default class CreateTransaction extends Component {
             validWallet: null,
         }
     }
-
+    componentDidMount() {
+        const {email, date_exp, token} = this.props;
+        this.props.fetchDashboard(email, date_exp, token);
+    }
     componentWillMount() {
         console.log(this.props);
         if (!this.props.wallet_send) {
