@@ -17,9 +17,12 @@ const mapStateToProps = (state) => {
         token: state.admin.token,
         date_exp: state.admin.date_exp,
         limit: state.admintransaction.limit,
-        page: state.admintransaction.page,
+        cursor: state.admintransaction.cursor,
         transactions: state.admintransaction.transactions,
-        fetched: state.admintransaction.fetched
+        fetched: state.admintransaction.fetched,
+        next: state.admintransaction.next,
+        total_transaction: state.admintransaction.total_transaction,
+        total_status: state.admintransaction.total_status,
     }
 };
 
@@ -27,7 +30,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         checkHasUserLogin: () => (checkHasLogin()),
         checkHasAdminLogin: () => (checkHasAdminLogin()),
-        fetchAdminTransactions : (email, date_exp, token, limit, page) => dispatch(fetchAdminTransaction(email, date_exp, token, limit, page))
+        fetchAdminTransactions : (email, date_exp, token, limit, cursor) => dispatch(fetchAdminTransaction(email, date_exp, token, limit, cursor)),
+        fetchNextAdminTransactions : (email, date_exp, token, limit, next) => dispatch(fetchAdminTransaction(email, date_exp, token, limit, next))
     }
 };
 
