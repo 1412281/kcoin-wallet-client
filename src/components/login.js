@@ -40,7 +40,11 @@ class Login extends Component {
         this.props.handleLoginButton(email, pwd);
     }
 
-    render() {
+    renderError(error){
+        return (<div className={"errorlogin"}>
+        <p>{error}</p></div>)
+    }
+    render(){
         if (this.props.checkHasAdminLogin()) {
             return (<Redirect  to={'/admin/dashboard'}/>);
         }
@@ -58,6 +62,7 @@ class Login extends Component {
         return (
 
             <div className="center">
+                { (this.props.login_error) ? this.renderError(this.props.login_error):''}
                 <form>
                     <FormGroup controlId="formHorizontalEmail" validationState={this.state.validEmail}>
                         <ControlLabel>Email</ControlLabel>
@@ -72,7 +77,6 @@ class Login extends Component {
 
                     <FormGroup controlId="formHorizontalPassword" validationState={this.state.validPwd}>
                         <ControlLabel>Password</ControlLabel>
-
                         <FormControl value={this.state.pwd}
                                      type="Password"
                                      onChange={this.handleInputPassword.bind(this)}

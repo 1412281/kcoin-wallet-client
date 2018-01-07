@@ -1,4 +1,4 @@
-import {DOLOGIN, DOLOGOUT, DOSIGNUP} from '../actions/actionType'
+import {DOLOGIN, DOLOGINFAIL, DOLOGOUT, DOSIGNUP} from '../actions/actionType'
 
 const initState = {
     doneSignUp: false,
@@ -6,7 +6,8 @@ const initState = {
     email: '',
     token: '',
     date_exp: '',
-    address: ''
+    address: '',
+    login_error: null
 };
 
 export default function userReducer(state = initState, action) {
@@ -22,10 +23,15 @@ export default function userReducer(state = initState, action) {
                 email: payload.email,
                 token: payload.token,
                 date_exp: payload.date_exp,
-                address: payload.address
+                address: payload.address,
+                login_error: null
             });
         case DOLOGOUT:
             return initState;
+        case DOLOGINFAIL:
+            return Object.assign({}, state, {
+                login_error: 'Login Fail'
+            });
         default:
             return state;
     }
