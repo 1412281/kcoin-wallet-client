@@ -63,8 +63,10 @@ export function fetchDashboard(email, date_exp, token) {
         return axios.get('/wallet/dashboard', {
             params: params
         }).then(function (data) {
-            // console.log(data);
-            dispatch({type:FETCH_BALANCE, payload: data.data[0].balance});
+            console.log(data);
+            if(data.length >0)
+                dispatch({type:FETCH_BALANCE, payload: data.data[0].balance});
+
         });
     }
 

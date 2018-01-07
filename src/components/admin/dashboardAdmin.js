@@ -17,15 +17,6 @@ class DashboardAdmin extends Component {
         this.props.fetchNextUsersBalance(email, date_exp, token, limit, next);
     }
 
-    handleButtonPrevious() {
-        const {id, limit, page} = this.props;
-        const {fetchUserTransactions} = this.props;
-        fetchUserTransactions(id, limit, page - 1);
-
-    }
-    componentDidMount() {
-    }
-
     generateUsersTable(data){
         return (
             <table class="table">
@@ -49,7 +40,7 @@ class DashboardAdmin extends Component {
                         </td>
 
                         <td>{object.balance}</td>
-                        <td>{object.balance}</td>
+                        <td>{object.real_balance}</td>
                     </tr>);
                 })
                 }
@@ -70,12 +61,11 @@ class DashboardAdmin extends Component {
         }
         return(
             <div className='dashboard'>
-                <div className={"col-sm-6"}>
-                    {this.generateUsersTable(this.props.users_balance)}
-                    {/*<Button onClick={() => this.handleButtonPrevious()}>Previous</Button>*/}
-                    <Button onClick={() => this.handleButtonLoadMore()}>LoadMore</Button>
+                <div className={"col-sm-2"}>
                 </div>
                 <div className={"col-sm-6"}>
+                    {this.generateUsersTable(this.props.users_balance)}
+                    <Button onClick={() => this.handleButtonLoadMore()}>LoadMore</Button>
                 </div>
             </div>
 

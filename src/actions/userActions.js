@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {DOLOGIN, DOLOGOUT, DOSIGNUP} from "./actionType";
+import {DOLOGIN, DOLOGOUT, DOSIGNUP, DOLOGINFAIL} from "./actionType";
 
 export function doSignup(email, pwd) {
     return (dispatch) => {
@@ -47,7 +47,7 @@ export function doLogin(email, pwd) {
 
             }
             else {
-                // self.props.setLogin(false);
+                dispatch({type:  DOLOGINFAIL})
             }
 
         }).catch(function (error) {
