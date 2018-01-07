@@ -8,7 +8,7 @@ import {
 import {FETCH_TRANSACTIONS_PREVIOUS_FULFILLED} from "../actions/actionType";
 
 const initState = {
-    balance: null,
+    balance: '',
     transactions: [],
     fetching: false,
     fetched: false,
@@ -22,8 +22,9 @@ const initState = {
 export default function transactionPublic(state = initState , action) {
     switch (action.type) {
         case FETCH_BALANCE:
+            console.log('1111111111111', action.balance);
             return Object.assign({}, state, {
-                balance: action.payload,
+                balance: action.balance,
             });
         case FETCH_TRANSACTIONS:
             return Object.assign({}, state, {fetching: true});
