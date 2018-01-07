@@ -33,12 +33,11 @@ class Dashboard extends Component {
         }
         const fetching = this.props.fetching;
         let transactions = this.props.transactions;
-        if (fetching === 'true') { transactions = []}
         return(
             <div className='dashboard'>
                 <h2>YOUR BALANCES:${this.props.balance}</h2>
 
-                <Transaction data={transactions}/>
+                <Transaction data={transactions} fetching={fetching}/>
 
                 <Button onClick={() => this.handleButtonPrevious()}>Previous</Button>
                 <Button onClick={() => this.handleButtonNext()}>Next</Button>
