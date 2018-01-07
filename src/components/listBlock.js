@@ -27,7 +27,7 @@ export default class ListBlock extends Component {
             const timeString = stDays > 0 ? stDays + " day(s)" : stHrs > 0 ? stHrs + " hour(s)" : stMins + " min(s)";
 
             return (<tr>
-                <td>{index}</td>
+                <td>{block.height}</td>
                 <td>{convertBlockToLink(block.hash)}</td>
                 <td>{block.transactions.length}</td>
                 <td>{timeString}</td>

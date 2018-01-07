@@ -28,7 +28,7 @@ class App extends Component {
 
 
     render() {
-
+        const self = this;
         return (
             <div>
                 <NavbarContainer/>
@@ -38,7 +38,7 @@ class App extends Component {
                     <Route path="/login" render={() => <LoginContainer/>}/>
                     <Route path="/dashboard" render={() => <DashboardContainer/>}/>
                     <Route path="/createTransaction" render={() => <CreateTransactionContainer/>}/>
-                    <Route path="/block" render={() => <Block/>}/>
+                    <Route path="/block/:hash" component={Block}/>
                     <Route path="/transaction" render={() => <Transaction/>}/>
                     <Route path="/admin/login" render={() => <LoginAdminContainer/>}/>
                     <Route path="/admin/dashboard" render={() => <AdminDashboardContainer/>}/>

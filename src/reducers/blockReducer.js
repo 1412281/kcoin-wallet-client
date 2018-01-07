@@ -11,7 +11,7 @@ const initState = {
     fetched: false,
     error: null,
     limit: 10,
-    page: '',
+    page: 0,
     doneSend: false
 
 };
