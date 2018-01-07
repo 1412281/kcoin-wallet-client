@@ -9,49 +9,47 @@ class TransactionAdmin extends Component {
     componentWillMount() {
     }
 
-    handleButtonNext() {
-        const {id, limit, page} = this.props;
-        this.props.fetchUserTransactions(id, limit, page + 1);
+    handleButtonLoadMore() {
+        const {email, date_exp, token,limit, next} = this.props;
+        this.props.fetchNextAdminTransactions(email, date_exp, token, limit, next);
     }
 
-    handleButtonPrevious() {
-        const {id, limit, page} = this.props;
-        const {fetchUserTransactions} = this.props;
-
-        fetchUserTransactions(id, limit, page - 1);
-
-    }
-    componentDidMount() {
-    }
-
-    generateUsersTable(data){
-        let totalBalance = 0, totalrealBalance = 0;
-        data.map(function (object, i){
-            if (object.balance)
-                totalBalance += object.balance
-            if (object.balance)
-                totalrealBalance += object.real_balance
-        })
+    generateTransactionsTable(data){
+        console.log(data)
         return (
             <table class="table">
                 <thead class="thead-default">
                 <tr>
-                    <th  colspan={2} className={"UsersTableHeader"+" col-sm-8"}>
-                        {data.length} User(s)
+                    <th colSpan={2} className={"UsersTableHeader"+" col-sm-8"}>
+                        {this.props.total_transaction} Transaction(s)
                     </th>
-                    <th className={"BalanceTableHeader"}>#1Balance: {totalBalance}</th>
-                    <th className={"BalanceTableHeader"}>#2Balance: {totalrealBalance}</th>
+                    <th className={"warning BalanceTableHeader"}>{this.props.total_status.pending} Pending</th>
+                    <th className={"info BalanceTableHeader"}>{this.props.total_status.processing} Processing</th>
+                    <th className={"success BalanceTableHeader"}>{this.props.total_status.done} Done</th>
+                </tr>
+                <tr>
+                    <th >No.</th>
+                    <th >Date</th>
+                    <th >Receiver</th>
+                    <th className={"BalanceTableHeader"}>KCoin</th>
+                    <th className={"BalanceTableHeader"}>Status</th>
                 </tr>
                 </thead>
                 <tbody>
-                {data.map(function(object, i){
-                    return (<tr>
-                        <th scope="row">{i+1}</th>
-                        <td>{object.email}</td>
-                        <td>{object.balance}</td>
-                        <td>{object.balance}</td>
-                    </tr>);
-                })
+                {data.map(function(transaction, i){
+                    const alert =  transaction.status === 'pending' ? 'warning':
+                                    transaction.status === 'processing' ? 'info':
+                                    transaction.status === 'done' ? 'success' : 'danger';
+                    return (
+                            <tr className={alert}>
+                                <th scope="row">{i+1}</th>
+                                <td>{transaction.date}</td>
+                                <td >{transaction.address_receive}</td>
+                                <td>{transaction.coin}</td>
+                                <td>{transaction.status}</td>
+                            </tr>
+                        )
+                    })
                 }
                 </tbody>
             </table>
@@ -65,17 +63,16 @@ class TransactionAdmin extends Component {
             return (<Redirect  to={'/admin/login'}/>);
         }
         if (!this.props.fetched) {
-            const {email, date_exp, token, limit, page} = this.props;
-            this.props.fetchAdminTransactions(email, date_exp, token, limit, page);
+            const {email, date_exp, token, limit, cursor} = this.props;
+            this.props.fetchAdminTransactions(email, date_exp, token, limit, cursor);
         }
         return(
             <div className='dashboard'>
-                <div className={"col-sm-6"}>
-                    {this.generateUsersTable(this.props.transactions)}
-                    {/*<Button onClick={() => this.handleButtonPrevious()}>Previous</Button>*/}
-                    {/*<Button onClick={() => this.handleButtonNext()}>Next</Button>*/}
+                <div className={"col-sm-2"}>
                 </div>
                 <div className={"col-sm-6"}>
+                    {this.generateTransactionsTable(this.props.transactions)}
+                    <Button onClick={() => this.handleButtonLoadMore()}>LoadMore</Button>
                 </div>
             </div>
 

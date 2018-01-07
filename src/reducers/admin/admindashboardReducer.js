@@ -11,7 +11,7 @@ const initState = {
     fetching: false,
     fetched: false,
     error: null,
-    limit: 2,
+    limit: 10,
     previous: [],
     cursor: {},
     next: {}
