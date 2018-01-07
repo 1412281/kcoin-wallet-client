@@ -40,7 +40,7 @@ class DashboardAdmin extends Component {
                         </td>
 
                         <td>{object.balance}</td>
-                        <td>{object.balance}</td>
+                        <td>{object.real_balance}</td>
                     </tr>);
                 })
                 }
