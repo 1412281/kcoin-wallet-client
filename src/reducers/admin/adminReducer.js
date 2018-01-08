@@ -1,10 +1,11 @@
-import {DOADMINLOGIN, DOADMINLOGOUT} from '../../actions/actionType'
+import {DOADMINLOGIN, DOADMINLOGOUT,DOADMINLOGINFAIL} from '../../actions/actionType'
 
 const initState = {
     hasLogin: false,
     email: '',
     token: '',
-    date_exp: ''
+    date_exp: '',
+    login_error: null
 };
 
 export default function adminReducer(state = initState, action) {
@@ -16,6 +17,10 @@ export default function adminReducer(state = initState, action) {
                 email: payload.email,
                 token: payload.token,
                 date_exp: payload.date_exp
+            });
+        case DOADMINLOGINFAIL:
+            return Object.assign({}, state, {
+                login_error: 'Login Fail'
             });
         case DOADMINLOGOUT:
             return initState;

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {DOADMINLOGIN, DOADMINLOGOUT} from "../actionType";
+import {DOADMINLOGIN, DOADMINLOGOUT, DOADMINLOGINFAIL} from "../actionType";
 
 export function doAdminLogin(email, pwd) {
     return (dispatch) => {
@@ -17,13 +17,13 @@ export function doAdminLogin(email, pwd) {
                     token: data.token
                 };
                 console.log(payload)
-
                 localStorage.setItem('dataAdminLogin', JSON.stringify(payload));
                 dispatch({type: DOADMINLOGIN, payload: payload});
 
             }
             else {
                 // self.props.setLogin(false);
+                dispatch({type: DOADMINLOGINFAIL})
             }
 
         }).catch(function (error) {

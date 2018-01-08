@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
         hasUserLogin: state.user.hasLogin,
         token: state.admin.token,
         date_exp: state.admin.date_exp,
+        login_error: state.admin.login_error
     }
 };
 

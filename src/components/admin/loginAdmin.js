@@ -46,6 +46,11 @@ class LoginAdmin extends Component {
         this.props.handleLoginButton(email, pwd);
     }
 
+    renderError(error){
+        return (<div className={"errorlogin"}>
+            <p>{error}</p></div>)
+    }
+
     render() {
         if (this.props.checkHasUserLogin())
         {
@@ -65,6 +70,7 @@ class LoginAdmin extends Component {
         return (
 
             <div className="center">
+                { (this.props.login_error) ? this.renderError(this.props.login_error):''}
                 <form>
                     <FormGroup controlId="formHorizontalId" validationState={this.state.validEmail}>
                         <ControlLabel>Admin email</ControlLabel>

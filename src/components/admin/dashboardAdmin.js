@@ -27,7 +27,7 @@ class DashboardAdmin extends Component {
                     </th>
                     <th className={"UsersTableHeader"}>Address</th>
                     <th className={"BalanceTableHeader"}>#1Balance: {this.props.total_balance}</th>
-                    <th className={"BalanceTableHeader"}>#2Balance: {this.props.total_real_balance}</th>
+                    <th className={"BalanceTableHeader"}>#2ABalance: {this.props.total_real_balance}</th>
                 </tr>
                 </thead>
                 <tbody>
