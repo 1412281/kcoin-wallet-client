@@ -74,21 +74,23 @@ export function fetchDashboard(email, date_exp, token) {
 
 export function deleteTransaction(email, date_exp, token, transaction) {
     return (dispatch) => {
-        const params = {
+        const body = {
             email: email,
             date_exp: date_exp,
-            token: token
+            token: token,
+            transaction: transaction
         };
-        console.log(params);
-        console.log(transaction);
-        // return axios.get('/wallet/dashboard', {
-        //     params: params
-        // }).then(function (data) {
-        //     console.log(data.data[0].balance);
-        //     if(data.data[0] !== undefined)
-        //         dispatch({type:FETCH_BALANCE, balance: data.data[0].balance});
-        //
-        // });
+        console.log(body)
+        axios.post('/wallet/deletepending',body).then(function(response) {
+            console.log(response.data);
+            window.location.reload()
+            // if (response.data.data.length > 0)
+            //     dispatch({type: FETCH_TRANSACTIONS_PREVIOUS_FULFILLED, payload: response.data})
+
+        }).catch(function(err){
+            dispatch({type: FETCH_TRANSACTIONS_REJECTED, payload: err})
+
+        });
     }
 
 }

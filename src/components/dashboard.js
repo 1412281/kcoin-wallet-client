@@ -29,7 +29,7 @@ class Dashboard extends Component {
     }
     handleDeleteTransaction(e){
         var transaction = JSON.parse(e.target.id)
-        const {email, date_exp, token, limit} = this.props;
+        const {email, date_exp, token} = this.props;
         this.props.deleteTransaction(email, date_exp, token, transaction)
     }
     render() {
@@ -42,7 +42,7 @@ class Dashboard extends Component {
             <div className='dashboard'>
                 <h2>YOUR BALANCES:${this.props.balance}</h2>
 
-                <Transaction data={transactions} fetching={fetching} deleteTransaction={(e) => this.handleDeleteTransaction(e)}/>
+                <Transaction data={transactions} fetching={fetching} handledeleteTransaction={(e) => this.handleDeleteTransaction(e)}/>
 
                 <Button onClick={() => this.handleButtonPrevious()}>Previous</Button>
                 <Button onClick={() => this.handleButtonNext()}>Next</Button>
