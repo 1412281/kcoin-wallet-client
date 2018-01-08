@@ -17,42 +17,53 @@ class TransactionAdmin extends Component {
     generateTransactionsTable(data){
         console.log(data)
         return (
-            <table class="table">
-                <thead class="thead-default">
-                <tr>
-                    <th colSpan={2} className={"UsersTableHeader"+" col-sm-8"}>
-                        {this.props.total_transaction} Transaction(s)
-                    </th>
-                    <th className={"warning BalanceTableHeader"}>{this.props.total_status.pending} Pending</th>
-                    <th className={"info BalanceTableHeader"}>{this.props.total_status.processing} Processing</th>
-                    <th className={"success BalanceTableHeader"}>{this.props.total_status.done} Done</th>
-                </tr>
-                <tr>
-                    <th >No.</th>
-                    <th >Date</th>
-                    <th >Receiver</th>
-                    <th className={"BalanceTableHeader"}>KCoin</th>
-                    <th className={"BalanceTableHeader"}>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                {data.map(function(transaction, i){
-                    const alert =  transaction.status === 'pending' ? 'warning':
-                                    transaction.status === 'processing' ? 'info':
-                                    transaction.status === 'done' ? 'success' : 'danger';
-                    return (
-                            <tr className={alert}>
-                                <th scope="row">{i+1}</th>
-                                <td>{transaction.date}</td>
-                                <td >{transaction.address_receive}</td>
-                                <td>{transaction.coin}</td>
-                                <td>{transaction.status}</td>
-                            </tr>
-                        )
-                    })
-                }
-                </tbody>
-            </table>
+                <div>
+                    <table class="table">
+                        <thead class="thead-default">
+                        <tr>
+                            <th className={"UsersTableHeader"+" col-sm-8"}>
+                                {this.props.total_transaction} Transaction(s)
+                            </th>
+                            <th className={"danger BalanceTableHeader"}>{this.props.total_status.cancel} Cancel</th>
+                            <th className={" BalanceTableHeader"}>{this.props.total_status.pending} Pending</th>
+                            <th className={"warning BalanceTableHeader"}>{this.props.total_status.waiting} Waiting</th>
+                            <th className={"info BalanceTableHeader"}>{this.props.total_status.processing} Processing</th>
+                            <th className={"success BalanceTableHeader"}>{this.props.total_status.done} Done</th>
+                        </tr>
+                        </thead>
+                    </table>
+                    <table class="table">
+                        <thead class="thead-default">
+                        <tr>
+                            <th >No.</th>
+                            <th >Date</th>
+                            <th >Receiver</th>
+                            <th className={"BalanceTableHeader"}>KCoin</th>
+                            <th className={"BalanceTableHeader"}>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {data.map(function(transaction, i){
+                            const alert =  transaction.status === 'pending' ? '':
+                                transaction.status === 'processing' ? 'info':
+                                    transaction.status === 'done' ? 'success' :
+                                        transaction.status === 'cancel' ? 'danger' :
+                                            transaction.status === 'waiting' ? 'warning' : '';
+                            return (
+                                <tr className={alert}>
+                                    <th scope="row">{i+1}</th>
+                                    <td>{transaction.date}</td>
+                                    <td colspan={3}>{transaction.address_receive}</td>
+                                    <td>{transaction.coin}</td>
+                                    <td>{transaction.status}</td>
+                                </tr>
+                            )
+                        })
+                        }
+                        </tbody>
+                    </table>
+                </div>
+
         );
     }
     render() {
