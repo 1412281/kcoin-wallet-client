@@ -19,6 +19,9 @@ export default class Transaction extends Component {
                 <td>{transaction.address_receive}</td>
                 <td>{transaction.coin}</td>
                     <td>{transaction.status}</td>
+                    <td><div onClick={(e)=>this.props.deleteTransaction(e)}>
+                        <p><span class="glyphicon glyphicon-remove" id={JSON.stringify(transaction)}></span></p>
+                    </div></td>
             </tr>);
         });
         return (

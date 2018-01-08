@@ -71,3 +71,24 @@ export function fetchDashboard(email, date_exp, token) {
     }
 
 }
+
+export function deleteTransaction(email, date_exp, token, transaction) {
+    return (dispatch) => {
+        const params = {
+            email: email,
+            date_exp: date_exp,
+            token: token
+        };
+        console.log(params);
+        console.log(transaction);
+        // return axios.get('/wallet/dashboard', {
+        //     params: params
+        // }).then(function (data) {
+        //     console.log(data.data[0].balance);
+        //     if(data.data[0] !== undefined)
+        //         dispatch({type:FETCH_BALANCE, balance: data.data[0].balance});
+        //
+        // });
+    }
+
+}

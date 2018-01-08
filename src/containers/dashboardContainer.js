@@ -4,6 +4,7 @@ import {checkHasLogin} from "../actions/userActions";
 import {
     fetchUserTransactions,
     fetchDashboard, fetchUserTransactionsPrevious,
+    deleteTransaction
 
 } from '../actions/dashboardActions'
 
@@ -30,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchUserTransactions: (email, limit, cursor) => dispatch(fetchUserTransactions(email, limit, cursor)),
         fetchUserTransactionsNext: (email, limit, next) => dispatch(fetchUserTransactions(email, limit, next)),
         fetchUserTransactionsPrevious: (email, limit, previous) => dispatch(fetchUserTransactionsPrevious(email, limit, previous)),
-
+        deleteTransaction: (email, date_exp, token, transaction) => dispatch(deleteTransaction(email, date_exp, token, transaction))
     }
 };
 
