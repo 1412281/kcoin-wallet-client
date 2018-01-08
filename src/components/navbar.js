@@ -29,13 +29,13 @@ export default class NavbarInstance extends Component {
         }
         else {
             if (this.props.checkHasUserLogin() || this.props.hasLogin){
-                log = <NavLogout doLogout={doLogout}/>;
+                log = <NavLogout doLogout={doLogout} email={this.props.email}/>;
                 const {email, date_exp, token} = this.props;
             }   // this.props.fetchDashboard(email, date_exp, token);
             else
                 if (this.props.checkHasAdminLogin() || this.props.hasAdminLogin)
                 {
-                    log = <NavAdminLogout doAdminLogout={this.props.doAdminLogout}/>;
+                    log = <NavAdminLogout doAdminLogout={this.props.doAdminLogout} admin_email={this.props.admin_email}/>;
                 }
             }
 
@@ -88,6 +88,7 @@ class NavLogout extends Component{
             <Nav pullRight>
                 <NavItem><Link to="/createTransaction">CREATE TRANSACTION</Link></NavItem>
                 <NavItem><Link to="/dashboard">DASHBOARD</Link></NavItem>
+                <NavItem>{this.props.email}</NavItem>
                 <NavItem><a onClick={this.handleButtonLogout.bind(this)}>LOG OUT</a></NavItem>
 
             </Nav>
@@ -108,6 +109,7 @@ class NavAdminLogout extends Component{
             <Nav pullRight>
                 <NavItem><Link to="/admin/dashboard">USERS BALANCE</Link></NavItem>
                 <NavItem><Link to="/admin/transaction">TRANSACTIONS</Link></NavItem>
+                <NavItem>{this.props.admin_email}</NavItem>
                 <NavItem><a onClick={this.handleButtonLogout.bind(this)}>LOG OUT</a></NavItem>
 
             </Nav>
