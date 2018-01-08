@@ -94,7 +94,7 @@ class SignUp extends Component {
         return (
             <div className="center">
                 <form>
-                    <FormGroup controlId="formHorizontalEmail" validationState={this.state.validEmail}>
+                    <FormGroup controlId="email" validationState={this.state.validEmail}>
                         <ControlLabel>Email</ControlLabel>
 
                         <FormControl value={this.state.email}

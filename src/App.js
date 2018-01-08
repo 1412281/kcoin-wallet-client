@@ -19,6 +19,7 @@ import axios from 'axios';
 import Block from "./components/block";
 import Transaction from "./components/transaction";
 
+// axios.defaults.baseURL = 'https://kcoin-wallet-server.herokuapp.com';
 axios.defaults.baseURL = 'http://localhost:4000';
 class App extends Component {
 

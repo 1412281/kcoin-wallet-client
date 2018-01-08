@@ -8,7 +8,7 @@ export function doSignup(email, pwd) {
             password: pwd
         }).then(function (response) {
                 console.log(response);
-                alert("Your wallet ID is: " + response.data.address+"\nPlease check your email for your confirmation!");
+                alert("Please check your email for your confirmation!\nYour wallet ID was send");
                 dispatch({type: DOSIGNUP});
         }).catch(function (error) {
                 console.log(error);
