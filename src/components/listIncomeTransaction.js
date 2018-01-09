@@ -4,7 +4,7 @@ import {Table} from 'react-bootstrap';
 export default class IncomeTransaction extends Component {
     render() {
         const data = this.props.data;
-        if (data.length === 0) return (<div>Empty...</div>);
+        if (data === undefined || data.length === 0) return (<div>Empty...</div>);
         const listTransaction = data.map((transaction, index) => {
             return (
                 <tr className={alert}>

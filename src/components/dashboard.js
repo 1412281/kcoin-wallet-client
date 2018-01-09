@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Transaction from './listTransaction';
 import {Button} from 'react-bootstrap';
 import {Redirect} from "react-router-dom";
+import IncomeTransaction from './listIncomeTransaction';
 
 class Dashboard extends Component {
 
@@ -26,9 +27,10 @@ class Dashboard extends Component {
         const {email, date_exp, token, limit} = this.props;
         this.props.fetchDashboard(email, date_exp, token);
         this.props.fetchUserTransactions(email, limit, {});
+        this.props.fetchUserIncome(email, date_exp, token);
     }
     handleDeleteTransaction(e){
-        var transaction = JSON.parse(e.target.id)
+        let transaction = JSON.parse(e.target.id);
         const {email, date_exp, token} = this.props;
         this.props.deleteTransaction(email, date_exp, token, transaction)
     }
@@ -38,6 +40,7 @@ class Dashboard extends Component {
         }
         const fetching = this.props.fetching;
         let transactions = this.props.transactions;
+        let transactionsIncome = this.props.transactionsIncome;
         return(
             <div className='dashboard'>
                 <h2>YOUR BALANCES:${this.props.balance}</h2>
@@ -46,6 +49,11 @@ class Dashboard extends Component {
 
                 <Button onClick={() => this.handleButtonPrevious()}>Previous</Button>
                 <Button onClick={() => this.handleButtonNext()}>Next</Button>
+
+                <h2>Income Transaction</h2>
+                <div className='dashboard'>
+                    <IncomeTransaction data={transactionsIncome} fetching={fetching} />
+                </div>
             </div>
 
         );

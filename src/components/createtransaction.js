@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
 import {Redirect } from 'react-router-dom';
-
+// import { withRouter } from 'react-router';
 
 export default class CreateTransaction extends Component {
     constructor(props) {
@@ -14,6 +14,7 @@ export default class CreateTransaction extends Component {
         }
     }
     componentDidMount() {
+        console.log(this);
         const {email, date_exp, token} = this.props;
         this.props.fetchDashboard(email, date_exp, token);
     }

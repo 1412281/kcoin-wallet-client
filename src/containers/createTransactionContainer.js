@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import CreateTransaction from '../components/createtransaction'
 
+
 import {
     checkWalletAvailable,
     createTransaction,
@@ -8,13 +9,14 @@ import {
 import {fetchDashboard} from '../actions/dashboardActions'
 
 const mapStateToProps = (state) => {
+
     return {
         email: state.user.email,
         token: state.user.token,
         date_exp: state.user.date_exp,
         wallet_send: state.user.address,
         balance: state.dashboard.balance,
-        doneSend: state.transactionPublic.doneSend,
+        doneSend: state.transactionPublic.doneSend
     }
 };
 

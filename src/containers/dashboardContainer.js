@@ -4,7 +4,7 @@ import {checkHasLogin} from "../actions/userActions";
 import {
     fetchUserTransactions,
     fetchDashboard, fetchUserTransactionsPrevious,
-    deleteTransaction
+    deleteTransaction, fetchUserIncome
 
 } from '../actions/dashboardActions'
 
@@ -21,6 +21,8 @@ const mapStateToProps = (state) => {
         transactions: state.dashboard.transactions,
         fetching:  state.dashboard.fetching,
 
+        transactionsIncome: state.income.transactions
+
     }
 };
 
@@ -31,7 +33,9 @@ const mapDispatchToProps = (dispatch) => {
         fetchUserTransactions: (email, limit, cursor) => dispatch(fetchUserTransactions(email, limit, cursor)),
         fetchUserTransactionsNext: (email, limit, next) => dispatch(fetchUserTransactions(email, limit, next)),
         fetchUserTransactionsPrevious: (email, limit, previous) => dispatch(fetchUserTransactionsPrevious(email, limit, previous)),
-        deleteTransaction: (email, date_exp, token, transaction) => dispatch(deleteTransaction(email, date_exp, token, transaction))
+        deleteTransaction: (email, date_exp, token, transaction) => dispatch(deleteTransaction(email, date_exp, token, transaction)),
+        fetchUserIncome: (email, date_exp, token) => dispatch(fetchUserIncome(email, date_exp, token)),
+
     }
 };
 

@@ -72,6 +72,9 @@ export function checkHasLogin() {
                 return true;
             // }
         }
+        else {
+
+        }
         return false;
 }
 
