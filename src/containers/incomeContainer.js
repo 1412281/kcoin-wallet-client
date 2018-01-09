@@ -5,14 +5,13 @@ import {
     fetchUserIncome
 
 } from '../actions/dashboardActions'
-
 const mapStateToProps = (state) => {
     return {
         hasLogin: state.user.hasLogin,
         email: state.user.email,
         token: state.user.token,
         date_exp: state.user.date_exp,
-        fetching:  state.dashboard.fetching,
+        fetching:  state.income.fetching,
         transactions: state.income.transactions
     }
 };
