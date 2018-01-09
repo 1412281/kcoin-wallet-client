@@ -16,7 +16,7 @@ export default class Block extends Component {
 
     componentDidMount() {
         const strBlockLink = '/block/' + this.props.match.params.hash;
-        const self = this
+        const self = this;
         axios.get(strBlockLink).then(function (res) {
             const block = res.data;
             console.log(block);
@@ -77,7 +77,7 @@ export default class Block extends Component {
             const listInput = transaction.inputs.map((input, index) => {
                 return (
                     <div>
-                        {scriptToLinkAddress(input.referencedOutputHash)}#{input.referencedOutputIndex}
+                        {convertTransactionToLink(input.referencedOutputHash)}#{input.referencedOutputIndex}
 
                     </div>
                 )
@@ -158,9 +158,12 @@ export default class Block extends Component {
 
 function scriptToLinkAddress(sc) {
     const list = sc.split(' ');
-    const toSt = '/address/' + list[list.length - 1]
+    // const toSt = '/address/' + list[list.length - 1]
+    // return (
+    //     <Link to={toSt}>{list[list.length - 1].slice(0, 20)}...</Link>
+    // );
     return (
-        <Link to={toSt}>{list[list.length - 1].slice(0,20)}...</Link>
+        <span>{list[list.length - 1].slice(0, 20)}...</span>
     );
 }
 

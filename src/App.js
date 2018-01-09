@@ -42,7 +42,7 @@ class App extends Component {
                     <Route path="/income" render={() => <IncomeContainer/>}/>
                     <Route path="/createTransaction" render={() => <CreateTransactionContainer/>}/>
                     <Route path="/block/:hash" component={Block}/>
-                    <Route path="/transaction" render={() => <Transaction/>}/>
+                    <Route path="/transaction/:hash" component={Transaction}/>
                     <Route path="/admin/login" render={() => <LoginAdminContainer/>}/>
                     <Route path="/admin/dashboard" render={() => <AdminDashboardContainer/>}/>
                     <Route path="/admin/transaction" render={() => <AdminTransactionContainer/>}/>
