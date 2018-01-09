@@ -1,9 +1,10 @@
 import axios from 'axios'
-import {FETCH_TRANSACTIONS,
+import {
+    FETCH_TRANSACTIONS,
     FETCH_TRANSACTIONS_PREVIOUS_FULFILLED,
     FETCH_TRANSACTIONS_FULFILLED,
     FETCH_TRANSACTIONS_REJECTED,
-    FETCH_BALANCE
+    FETCH_BALANCE, FETCH_INCOME
 } from "./actionType";
 
 export function fetchUserTransactions(email, limit, cursor) {
@@ -68,7 +69,24 @@ export function fetchDashboard(email, date_exp, token) {
 
         });
     }
+}
 
+export function fetchUserIncome(email, date_exp, token) {
+    return (dispatch) => {
+        const params = {
+            email: email,
+            date_exp: date_exp,
+            token: token
+        };
+        console.log(params);
+        return axios.get('/wallet/getAllReceiveHistory', {
+            params: params
+        }).then(function (data) {
+            if(data !== undefined)
+                dispatch({type:FETCH_INCOME, transactions: data.transactions});
+
+        });
+    }
 }
 
 export function deleteTransaction(email, date_exp, token, transaction) {

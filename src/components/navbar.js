@@ -87,7 +87,8 @@ class NavLogout extends Component{
 
             <Nav pullRight>
                 <NavItem><Link to="/createTransaction">CREATE TRANSACTION</Link></NavItem>
-                <NavItem><Link to="/dashboard">DASHBOARD</Link></NavItem>
+                <NavItem><Link to="/dashboard">DASHBOARD</  Link></NavItem>
+                <NavItem><Link to="/income">INCOME</Link></NavItem>
                 <NavItem>{this.props.email}</NavItem>
                 <NavItem><a onClick={this.handleButtonLogout.bind(this)}>LOG OUT</a></NavItem>
 

@@ -12,6 +12,7 @@ import SignUpContainer from './containers/signupContainer';
 import LoginContainer from './containers/loginContainer';
 import LoginAdminContainer from './containers/admin/loginAdminContainer';
 import DashboardContainer from './containers/dashboardContainer';
+import IncomeContainer from './containers/incomeContainer';
 import AdminDashboardContainer from './containers/admin/admindashboardContainer';
 import AdminTransactionContainer from './containers/admin/adminTransactionContainer';
 
@@ -38,6 +39,7 @@ class App extends Component {
                     <Route path="/signup" component={SignUpContainer}/>
                     <Route path="/login" render={() => <LoginContainer/>}/>
                     <Route path="/dashboard" render={() => <DashboardContainer/>}/>
+                    <Route path="/income" render={() => <IncomeContainer/>}/>
                     <Route path="/createTransaction" render={() => <CreateTransactionContainer/>}/>
                     <Route path="/block/:hash" component={Block}/>
                     <Route path="/transaction" render={() => <Transaction/>}/>
