@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
 import {Redirect } from 'react-router-dom';
-// import { withRouter } from 'react-router';
+import createHistory from 'history/createBrowserHistory';
+
 
 export default class CreateTransaction extends Component {
     constructor(props) {
@@ -11,10 +12,12 @@ export default class CreateTransaction extends Component {
             coin: '',
             validCoin: null,
             validWallet: null,
-        }
+        };
     }
     componentDidMount() {
-        console.log(this);
+        let history = createHistory();
+
+        console.log(history.location);
         const {email, date_exp, token} = this.props;
         this.props.fetchDashboard(email, date_exp, token);
     }

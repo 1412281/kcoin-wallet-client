@@ -13,13 +13,18 @@ export default class NavbarInstance extends Component {
     }
 
     componentWillMount() {
+        this.props.reloadUserLogin()
+        this.props.reloadAdminLogin()
+    }
+
+    componentDidMount() {
+
     }
 
     render() {
         let log;
         const {doLogout} = this.props;
-        this.props.reloadUserLogin()
-        this.props.reloadAdminLogin()
+
         console.log(this.props.checkHasUserLogin())
         console.log(this.props.checkHasAdminLogin())
         console.log(this.props.hasLogin)
