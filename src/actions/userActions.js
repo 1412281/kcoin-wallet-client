@@ -105,5 +105,6 @@ export function reloadUserLogin() {
 
 function sessionLoginHasExpired(date_exp) {
     const current = new Date();
-    return (date_exp > current.getTime());
+    // return (date_exp < current.getTime());
+    return false;
 };

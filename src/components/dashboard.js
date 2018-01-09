@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Transaction from './listTransaction';
-import {Button} from 'react-bootstrap';
+import {Button, Grid, Row, Col,Pager, Glyphicon, Well} from 'react-bootstrap';
 import {Redirect} from "react-router-dom";
 import IncomeTransaction from './listIncomeTransaction';
 
@@ -42,19 +42,38 @@ class Dashboard extends Component {
         let transactions = this.props.transactions;
         let transactionsIncome = this.props.transactionsIncome;
         return(
-            <div className='dashboard'>
-                <h2>YOUR BALANCES:${this.props.balance}</h2>
 
-                <Transaction data={transactions} fetching={fetching} handledeleteTransaction={(e) => this.handleDeleteTransaction(e)}/>
+            <Grid>
+                <Row className="show-grid">
+                    <Col xs={10} md={10}>
 
-                <Button onClick={() => this.handleButtonPrevious()}>Previous</Button>
-                <Button onClick={() => this.handleButtonNext()}>Next</Button>
+                        <div className='dashboard'>
+                            <Well>
+                            <h2>Balance: {this.props.balance} <Glyphicon glyph="glyphicon glyphicon-grain"/></h2>
+                            </Well>
+                            <h2>Outcome Transaction</h2>
+                            <Well>
+                            <Transaction data={transactions} fetching={fetching} handledeleteTransaction={(e) => this.handleDeleteTransaction(e)}/>
+                            <Pager>
+                                <Pager.Item onClick={() => this.handleButtonPrevious()}>
+                                    &larr; Previous Page
+                                </Pager.Item>
+                                <Pager.Item onClick={() => this.handleButtonNext()}>
+                                    Next Page &rarr;
+                                </Pager.Item>
+                            </Pager>
+                            {/*<Button bsStyle="link" >Previous</Button>*/}
+                            {/*<Button bsStyle="link" >Next</Button>*/}
+                            </Well>
+                            <h2>Income Transaction</h2>
+                            <Well>
+                                <IncomeTransaction data={transactionsIncome} fetching={fetching} />
+                            </Well>
+                        </div>
+                    </Col>
+                </Row>
+            </Grid>
 
-                <h2>Income Transaction</h2>
-                <div className='dashboard'>
-                    <IncomeTransaction data={transactionsIncome} fetching={fetching} />
-                </div>
-            </div>
 
         );
     };

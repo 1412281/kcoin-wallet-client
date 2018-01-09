@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {Table} from 'react-bootstrap';
+import {Table,Image,Glyphicon} from 'react-bootstrap';
 
 export default class Transaction extends Component {
     render() {
         const data = this.props.data;
         console.log(data);
-        if (this.props.fetching) return (<div><h2>Loading...</h2></div>);
+        if (this.props.fetching) return (<div><img src={require('./resources/loading.gif')} width="128" height="128"/></div>);
         console.log(data);
-        if (data.length === 0) return (<div>Empty...</div>);
+        if (data.length === 0) return (<div><h5>You have NOT any outcome transaction</h5></div>);
         const listTransaction = data.data.map((transaction, index) => {
             const alert =  transaction.status === 'pending' ? 'warning':
                             transaction.status === 'processing' ? 'info':
@@ -17,11 +17,11 @@ export default class Transaction extends Component {
 
                 <td>{transaction.date}</td>
                 <td>{transaction.address_receive}</td>
-                <td>{transaction.coin}</td>
+                <td>-{transaction.coin}</td>
                     <td>{transaction.status}</td>
                     <td>{
                         (transaction.status === 'pending') ? <div onClick={(e) => this.props.handledeleteTransaction(e)}>
-                        <p><span class="glyphicon glyphicon-remove" id={JSON.stringify(transaction)}></span></p>
+                        <p><Glyphicon glyph="glyphicon glyphicon-remove" id={JSON.stringify(transaction)} /></p>
                         </div>: ''
                     }</td>
             </tr>);

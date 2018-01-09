@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, Grid, Row, Button} from 'react-bootstrap';
+import {Col, Grid, Row, Pager} from 'react-bootstrap';
 import ListBlock from "./listBlock";
 
 export default class Home extends Component {
@@ -37,9 +37,15 @@ export default class Home extends Component {
                         <ListBlock data={blocks}/>
                     }
                 </div>
+                <Pager>
+                    <Pager.Item onClick={() => this.handleButtonPrevious()}>
+                        &larr; Previous Page
+                    </Pager.Item>{' '}
+                    <Pager.Item onClick={() => this.handleButtonNext()}>
+                        Next Page &rarr;
+                    </Pager.Item>
+                </Pager>
 
-                <Button onClick={() => this.handleButtonPrevious()}>Previous</Button>
-                <Button onClick={() => this.handleButtonNext()}>Next</Button>
 
             </div>
                     </Col>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
+import {Button, FormGroup, ControlLabel, FormControl, HelpBlock, Glyphicon, Well} from 'react-bootstrap';
 import {Redirect } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
@@ -124,7 +124,9 @@ export default class CreateTransaction extends Component {
             this.validForm = 1;
         }
         return (
+
             <div className="center">
+                <Well>
                 <form>
                     <FormGroup controlId="formHorizontalID" validationState={this.state.validWallet}>
                         <ControlLabel>Wallet receive</ControlLabel>
@@ -156,9 +158,10 @@ export default class CreateTransaction extends Component {
                         <Button bsStyle="primary" block
                                 disabled={this.validForm}
                                 onClick={this.handleButtonSend.bind(this)}
-                        >Send</Button>
+                        ><Glyphicon glyph="glyphicon glyphicon-send"/> Send</Button>
                     </FormGroup>
                 </form>
+                </Well>
             </div>
 
 
