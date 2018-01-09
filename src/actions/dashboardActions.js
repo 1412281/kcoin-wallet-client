@@ -96,7 +96,7 @@ export function fetchUserIncome(email, date_exp, token) {
         }).then(function (data) {
             // if(data !== undefined)
 
-                dispatch({type:FETCH_INCOME, transactions: data.transactions});
+                dispatch({type:FETCH_INCOME, transactions: data.data});
 
         });
     }
