@@ -78,11 +78,24 @@ export function fetchUserIncome(email, date_exp, token) {
             date_exp: date_exp,
             token: token
         };
+        // var data=[{
+        //     address_send: null,
+        //     date: 'date',
+        //     coin: 100
+        // },
+        //     {
+        //         address_send: 'asdas',
+        //         date: 'date',
+        //         coin: 100
+        //     }
+        // ]
+        // dispatch({type:FETCH_INCOME, transactions: data});
         console.log(params);
         return axios.get('/wallet/getAllReceiveHistory', {
             params: params
         }).then(function (data) {
-            if(data !== undefined)
+            // if(data !== undefined)
+
                 dispatch({type:FETCH_INCOME, transactions: data.transactions});
 
         });

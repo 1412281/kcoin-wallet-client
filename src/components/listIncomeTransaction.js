@@ -5,7 +5,7 @@ export default class IncomeTransaction extends Component {
     render() {
         const data = this.props.data;
         if (data.length === 0) return (<div>Empty...</div>);
-        const listTransaction = data.data.map((transaction, index) => {
+        const listTransaction = data.map((transaction, index) => {
             return (
                 <tr className={alert}>
 
