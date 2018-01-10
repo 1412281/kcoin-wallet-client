@@ -33,16 +33,15 @@ class SignUp extends Component {
                 console.log(response)
                 if (response.status === 201) {
 
-                    self.setState({emailUnavailable: 1})
+                    self.setState({email: value,validEmail: 'warning'})
                 }
                 else {
-                    self.setState({emailUnavailable: 0})
+                    self.setState({email: value, validEmail: 'success'})
                 }
             }).catch(function (error) {
                 console.log(error);
             });
-
-            this.setState({email: value, validEmail: 'success'});
+            this.setState({email: value});
         } else {
             this.setState({email: value, validEmail: 'error'})
         }
@@ -79,7 +78,7 @@ class SignUp extends Component {
         if (this.props.doneSignUp) {
 
             return (<Redirect to={{
-                pathname: '/login',
+                pathname: '/kcoin-wallet-client/login',
             }}/>);
         }
 
@@ -103,7 +102,7 @@ class SignUp extends Component {
                                      onBlur={this.handleInputEmail.bind(this)}
                         /><FormControl.Feedback/>
                         {
-                            ( this.state.validEmail === 'success' && this.state.emailUnavailable) ?
+                            ( this.state.validEmail === 'warning') ?
                                 <div class="alert alert-warning" role="alert">
                                     {this.state.email} already exist!
                                 </div>
