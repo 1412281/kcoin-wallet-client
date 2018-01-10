@@ -61,7 +61,7 @@ export default class ListBlock extends Component {
 }
 
 function convertBlockToLink(st) {
-    const toSt = '/block/' + st;
+    const toSt = '/kcoin-wallet-client/block/' + st;
     return (
         <Link to={toSt}>{st}</Link>
     );
