@@ -36,6 +36,7 @@ class App extends Component {
                 <NavbarContainer/>
                 <Switch>
                     <Route exact path="/kcoin-wallet-client/" component={HomeContainer}/>
+                    <Route exact path="/" component={HomeContainer}/>
                     <Route path="/kcoin-wallet-client/signup" component={SignUpContainer}/>
                     <Route path="/kcoin-wallet-client/login" render={() => <LoginContainer/>}/>
                     <Route path="/kcoin-wallet-client/dashboard" render={() => <DashboardContainer/>}/>

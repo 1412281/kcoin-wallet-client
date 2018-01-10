@@ -71,7 +71,7 @@ class TransactionAdmin extends Component {
             return (<Redirect  to={'/'}/>);
         }
         if ( !this.props.checkHasAdminLogin()) {
-            return (<Redirect  to={'/admin/login'}/>);
+            return (<Redirect  to={'/kcoin-wallet-client/admin/login'}/>);
         }
         if (!this.props.fetched) {
             const {email, date_exp, token, limit, cursor} = this.props;

@@ -46,10 +46,10 @@ class Login extends Component {
     }
     render(){
         if (this.props.checkHasAdminLogin()) {
-            return (<Redirect  to={'/admin/dashboard'}/>);
+            return (<Redirect  to={'/kcoin-wallet-client/admin/dashboard'}/>);
         }
         if (this.props.checkHasUserLogin()) {
-            return (<Redirect  to={'/'}/>);
+            return (<Redirect  to={'/kcoin-wallet-client/dashboard'}/>);
         }
         this.validForm = 1;
         if (this.state.validEmail === 'success' && this.state.validPwd === 'success') {

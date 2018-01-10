@@ -168,14 +168,14 @@ function scriptToLinkAddress(sc) {
 }
 
 function convertBlockToLink(st) {
-    const toSt = '/block/' + st;
+    const toSt = '/kcoin-wallet-client/block/' + st;
     return (
         <Link to={toSt}>{st}</Link>
     );
 }
 
 function convertTransactionToLink(st) {
-    const toSt = '/transaction/' + st;
+    const toSt = '/kcoin-wallet-client/transaction/' + st;
     return (
         <Link to={toSt}>{st.slice(0,20)}...</Link>
     );
