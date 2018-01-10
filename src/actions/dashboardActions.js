@@ -4,7 +4,7 @@ import {
     FETCH_TRANSACTIONS_PREVIOUS_FULFILLED,
     FETCH_TRANSACTIONS_FULFILLED,
     FETCH_TRANSACTIONS_REJECTED,
-    FETCH_BALANCE, FETCH_INCOME, FETCH_INCOME_FULFILLED
+    FETCH_BALANCE, FETCH_INCOME, FETCH_INCOME_FULFILLED, FETCH_INCOME_REJECTED
 } from "./actionType";
 
 export function fetchUserTransactions(email, limit, cursor) {
@@ -88,6 +88,9 @@ export function fetchUserIncome(email, date_exp, token) {
             // if(data !== undefined)
             console.log(data.data);
                 dispatch({type:FETCH_INCOME_FULFILLED, transactions: data.data});
+
+        }).catch(function (err) {
+            dispatch({type:FETCH_INCOME_REJECTED});
 
         });
     }

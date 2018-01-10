@@ -1,4 +1,4 @@
-import {FETCH_INCOME_FULFILLED, FETCH_INCOME} from '../actions/actionType'
+import {FETCH_INCOME_FULFILLED, FETCH_INCOME, FETCH_INCOME_REJECTED} from '../actions/actionType'
 
 const initState = {
     transactions: [],
@@ -20,6 +20,10 @@ export default function income(state = initState , action) {
                 transactions: action.transactions,
                 fetching: false,
                 fetched: true,
+            });
+        case FETCH_INCOME_REJECTED:
+            return Object.assign({}, state, {
+                fetching: false
             });
         default:
             return state;

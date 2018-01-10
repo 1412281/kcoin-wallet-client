@@ -6,7 +6,7 @@ export default class IncomeTransaction extends Component {
         const data = this.props.data;
         if (this.props.fetching) return (<div><img src={require('./resources/loading.gif')} width="128" height="128"/></div>);
 
-        if (data === undefined || data.length === 0) return (<div><h5>You have NOT any outcome transaction</h5></div>);
+        if (data === undefined || data.length === 0) return (<div><h5>You have NOT any income transaction</h5></div>);
         const listTransaction = data.map((transaction, index) => {
             return (
                 <tr className={alert}>
