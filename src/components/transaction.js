@@ -124,7 +124,7 @@ function scriptToLinkAddress(sc) {
 
 
 function convertTransactionToLink(st) {
-    const toSt = '/kcoin-wallet-client/transaction/' + st;
+    const toSt = '/transaction/' + st;
     return (
         <Link to={toSt}>{st.slice(0, 20)}...</Link>
     );

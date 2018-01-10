@@ -24,7 +24,7 @@ export default class CreateTransaction extends Component {
     componentWillMount() {
         console.log(this.props);
         if (!this.props.wallet_send) {
-            return (<Redirect  to={'/kcoin-wallet-client/login'}/>);
+            return (<Redirect  to={'/login'}/>);
         }
     }
 
@@ -78,11 +78,11 @@ export default class CreateTransaction extends Component {
 
     render() {
         if (!this.props.wallet_send) {
-            return (<Redirect  to={'/kcoin-wallet-client/login'}/>);
+            return (<Redirect  to={'/login'}/>);
         }
         if (this.props.doneSend) {
             return (<Redirect to={{
-                pathname: '/kcoin-wallet-client/dashboard',
+                pathname: '/dashboard',
             }}/>);
         }
         console.log(this.props);

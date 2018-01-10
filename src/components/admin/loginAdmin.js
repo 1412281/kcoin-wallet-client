@@ -54,11 +54,11 @@ class LoginAdmin extends Component {
     render() {
         if (this.props.checkHasUserLogin())
         {
-            return (<Redirect  to={'/kcoin-wallet-client/'}/>);
+            return (<Redirect  to={'/'}/>);
         }
         if (this.props.checkHasAdminLogin() || this.props.hasAdminLogin)
         {
-            return (<Redirect  to={'/kcoin-wallet-client/admin/dashboard'}/>);
+            return (<Redirect  to={'/admin/dashboard'}/>);
         }
         if (this.state.validAddress === 'success' && this.state.validPwd === 'success') {
             this.state.validForm = null;

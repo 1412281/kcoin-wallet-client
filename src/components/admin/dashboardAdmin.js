@@ -50,10 +50,10 @@ class DashboardAdmin extends Component {
     }
     render() {
         if (this.props.checkHasUserLogin()) {
-            return (<Redirect  to={'/kcoin-wallet-client/'}/>);
+            return (<Redirect  to={'/'}/>);
         }
         if ( !this.props.checkHasAdminLogin()) {
-            return (<Redirect  to={'/kcoin-wallet-client/admin/login'}/>);
+            return (<Redirect  to={'/admin/login'}/>);
         }
         if (!this.props.fetched) {
             const {email, date_exp, token, limit, cursor} = this.props;

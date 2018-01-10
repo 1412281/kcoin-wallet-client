@@ -33,10 +33,10 @@ class SignUp extends Component {
                 console.log(response)
                 if (response.status === 201) {
 
-                    self.setState({email: value,validEmail: 'warning'})
+                    self.setState({validEmail: 'warning'})
                 }
                 else {
-                    self.setState({email: value, validEmail: 'success'})
+                    self.setState({validEmail: 'success'})
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -78,7 +78,7 @@ class SignUp extends Component {
         if (this.props.doneSignUp) {
 
             return (<Redirect to={{
-                pathname: '/kcoin-wallet-client/login',
+                pathname: '/login',
             }}/>);
         }
 

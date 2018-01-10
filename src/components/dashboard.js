@@ -36,7 +36,7 @@ class Dashboard extends Component {
     }
     render() {
         if (!(this.props.hasLogin || this.props.checkHasUserLogin())) {
-            return (<Redirect  to={'/kcoin-wallet-client'}/>);
+            return (<Redirect  to={''}/>);
         }
         const fetching = this.props.fetching;
         const fetchingIncome = this.props.fetchingIncome;
