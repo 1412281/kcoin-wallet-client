@@ -49,7 +49,7 @@ export default class NavbarInstance extends Component {
                 <Navbar inverse collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a><Link to="/">MY BLOCKCHAIN</Link></a>
+                            <a><Link to="/kcoin-wallet-client/">MY BLOCKCHAIN</Link></a>
                         </Navbar.Brand>
                         <Navbar.Toggle/>
                     </Navbar.Header>
@@ -72,9 +72,9 @@ class NavLogin extends Component{
     render() {
         return (
             <Nav pullRight>
-                <NavItem><Link to="/signup">SIGN UP</Link></NavItem>
-                <NavItem><Link to="/login">LOG IN</Link></NavItem>
-                <NavItem><Link to="/admin/login">ADMIN LOG IN</Link></NavItem>
+                <NavItem><Link to="/kcoin-wallet-client/signup">SIGN UP</Link></NavItem>
+                <NavItem><Link to="/kcoin-wallet-client/login">LOG IN</Link></NavItem>
+                <NavItem><Link to="/kcoin-wallet-client/admin/login">ADMIN LOG IN</Link></NavItem>
             </Nav>
 
     )
@@ -91,8 +91,8 @@ class NavLogout extends Component{
         return (
 
             <Nav pullRight>
-                <NavItem><Link to="/createTransaction">CREATE TRANSACTION</Link></NavItem>
-                <NavItem><Link to="/dashboard">DASHBOARD</  Link></NavItem>
+                <NavItem><Link to="/kcoin-wallet-client/createTransaction">CREATE TRANSACTION</Link></NavItem>
+                <NavItem><Link to="/kcoin-wallet-client/dashboard">DASHBOARD</  Link></NavItem>
                 {/*<NavItem><Link to="/income">INCOME</Link></NavItem>*/}
                 <NavItem>{this.props.email}</NavItem>
                 <NavItem><a onClick={this.handleButtonLogout.bind(this)}>LOG OUT</a></NavItem>
@@ -113,8 +113,8 @@ class NavAdminLogout extends Component{
         return (
 
             <Nav pullRight>
-                <NavItem><Link to="/admin/dashboard">USERS BALANCE</Link></NavItem>
-                <NavItem><Link to="/admin/transaction">TRANSACTIONS</Link></NavItem>
+                <NavItem><Link to="/kcoin-wallet-client/admin/dashboard">USERS BALANCE</Link></NavItem>
+                <NavItem><Link to="/kcoin-wallet-client/admin/transaction">TRANSACTIONS</Link></NavItem>
                 <NavItem>{this.props.admin_email}</NavItem>
                 <NavItem><a onClick={this.handleButtonLogout.bind(this)}>LOG OUT</a></NavItem>
 
