@@ -4,7 +4,7 @@ import {
     FETCH_TRANSACTIONS_PREVIOUS_FULFILLED,
     FETCH_TRANSACTIONS_FULFILLED,
     FETCH_TRANSACTIONS_REJECTED,
-    FETCH_BALANCE, FETCH_INCOME
+    FETCH_BALANCE, FETCH_INCOME, FETCH_INCOME_FULFILLED
 } from "./actionType";
 
 export function fetchUserTransactions(email, limit, cursor) {
@@ -78,25 +78,16 @@ export function fetchUserIncome(email, date_exp, token) {
             date_exp: date_exp,
             token: token
         };
-        // var data=[{
-        //     address_send: null,
-        //     date: 'date',
-        //     coin: 100
-        // },
-        //     {
-        //         address_send: 'asdas',
-        //         date: 'date',
-        //         coin: 100
-        //     }
-        // ]
-        // dispatch({type:FETCH_INCOME, transactions: data});
+
+        dispatch({type:FETCH_INCOME});
         console.log(params);
+
         return axios.get('/wallet/getAllReceiveHistory', {
             params: params
         }).then(function (data) {
             // if(data !== undefined)
-
-                dispatch({type:FETCH_INCOME, transactions: data.data});
+            console.log(data.data);
+                dispatch({type:FETCH_INCOME_FULFILLED, transactions: data.data});
 
         });
     }

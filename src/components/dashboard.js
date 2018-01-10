@@ -39,6 +39,7 @@ class Dashboard extends Component {
             return (<Redirect  to={'/'}/>);
         }
         const fetching = this.props.fetching;
+        const fetchingIncome = this.props.fetchingIncome;
         let transactions = this.props.transactions;
         let transactionsIncome = this.props.transactionsIncome;
         return(
@@ -67,7 +68,7 @@ class Dashboard extends Component {
                             </Well>
                             <h2>Income Transaction</h2>
                             <Well>
-                                <IncomeTransaction data={transactionsIncome} fetching={fetching} />
+                                <IncomeTransaction data={transactionsIncome} fetching={fetchingIncome} />
                             </Well>
                         </div>
                     </Col>

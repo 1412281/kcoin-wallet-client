@@ -2,7 +2,7 @@
   "name": "kcoin-wallet-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://1412281.github.io/kcoin-wallet-client",
+  "homepage": "https://1412281.github.io/kcoin-wallet-client/",
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "^3.3.7",

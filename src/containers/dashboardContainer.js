@@ -20,6 +20,7 @@ const mapStateToProps = (state) => {
         previous: state.dashboard.previous,
         transactions: state.dashboard.transactions,
         fetching:  state.dashboard.fetching,
+        fetchingIncome:  state.income.fetching,
 
         transactionsIncome: state.income.transactions
 
